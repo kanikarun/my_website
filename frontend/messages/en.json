@@ -1,0 +1,73 @@
+{
+  "components": {
+    "empty-state": {
+      "title": "No Result",
+      "description": "Sorry, we couldn't find what you were looking for.",
+      "button": "Clear filter"
+    },
+    "insight": {
+      "btn-detail": "View Detail →"
+    },
+    "portfolio": {
+      "btn-detail": "View Detail →",
+      "btn-more": "View More"
+    }
+  },
+  "navigation": {
+    "header": {
+      "right-button": "Free Consultation"
+    },
+    "footer": {
+      "services": "Services",
+      "company": "Company",
+      "follow-us": "Follow Us",
+      "copyright": "© {year} made with ❤️ by OneWorld Technology"
+    }
+  },
+  "page": {
+    "contact": {
+      "header-section": {
+        "tagline": "GET IN TOUCH",
+        "title": "Book a Free Consultation",
+        "description": "Tell us about your business challenges. We'll get back to you within 24 hours with a tailored strategy for your growth."
+      },
+      "contact-address": {
+        "title": "Our Office"
+      },
+      "connect": {
+        "title": "Direct Connect"
+      },
+      "alert": {
+        "title": "Free consultation includes:",
+        "description": "30-minute call or in-person meeting. We'll assess your needs and recommend the right approach. No obligation, no hard sell."
+      },
+      
+      "form": {
+        "full-name": "Full Name",
+        "full-name-placeholder": "Enter your fullname",
+        "full-name-error": "Please enter your fullname",
+        "email": "Email",
+        "email-placeholder": "Enter your email",
+        "email-error": "Please enter your email",
+        "phone": "Phone",
+        "phone-placeholder": "Enter your phone number",
+        "phone-error": "Please enter your phone number",
+        "phone-format-error": "Please enter a valid phone number format",
+        "company": "Company",
+        "company-placeholder": "Enter your company name",
+        "interests": "What are you interested in?",
+        "interests-error": "Please specify what are you interested in",
+        "message": "Tell us about your project",
+        "message-placeholder": "Describe your needs...",
+        "message-error": "Please tell us about your idea",
+        "submit": "Send message",
+        "submitting": "Sending message..."
+      }
+    },
+    "not-found": {
+      "title": "Page not found",
+      "subtitle": "The page you are looking for is unavailable.",
+      "back": "Go back home"
+    }
+  }
+}
