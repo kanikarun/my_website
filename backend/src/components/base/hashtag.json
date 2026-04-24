@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_base_hashtags",
+  "info": {
+    "displayName": "Hashtag",
+    "icon": "hashtag"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

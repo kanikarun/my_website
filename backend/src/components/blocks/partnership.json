@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_blocks_partnerships",
+  "info": {
+    "displayName": "Partnership",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "isHide": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    }
+  }
+}

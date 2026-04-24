@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_blocks_feature_works",
+  "info": {
+    "displayName": "Feature Work",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "featureSlides": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.feature-slide"
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_base_step_card_items",
+  "info": {
+    "displayName": "Step Card Item"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_blocks_carousels",
+  "info": {
+    "displayName": "Carousel"
+  },
+  "options": {},
+  "attributes": {
+    "sliders": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.slider"
+    },
+    "theme": {
+      "required": true,
+      "type": "enumeration",
+      "default": "OneWorld",
+      "enum": ["OneWorld", "Odoo"]
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

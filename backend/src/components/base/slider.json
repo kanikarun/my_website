@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_base_sliders",
+  "info": {
+    "displayName": "Slider",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.button"
+    },
+    "metrics": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.slider-metric"
+    },
+    "tagline": {
+      "type": "string",
+      "required": false
+    }
+  }
+}

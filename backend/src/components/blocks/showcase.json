@@ -1,0 +1,55 @@
+{
+  "collectionName": "components_blocks_showcases",
+  "info": {
+    "displayName": "Showcase",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "logoLight": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "logoDark": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false
+    },
+    "linkDownloads": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.link-download"
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

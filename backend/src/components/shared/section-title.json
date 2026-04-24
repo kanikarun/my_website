@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_shared_section_titles",
+  "info": {
+    "displayName": "Section Title",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "text"
+    },
+    "tagline": {
+      "type": "string",
+      "required": false
+    },
+    "taglineColor": {
+      "type": "enumeration",
+      "enum": [
+        "Primary",
+        "Purple",
+        "Teal"
+      ],
+      "default": "Primary",
+      "required": true
+    }
+  }
+}

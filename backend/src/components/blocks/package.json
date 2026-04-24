@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_packages",
+  "info": {
+    "displayName": "Package",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-title"
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.package-item"
+    }
+  }
+}

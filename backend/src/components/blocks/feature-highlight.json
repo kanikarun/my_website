@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_blocks_feature_highlights",
+  "info": {
+    "displayName": "Feature Highlight",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "orientation": {
+      "type": "enumeration",
+      "default": "Horizontal",
+      "enum": ["Horizontal", "Vertical"]
+    },
+    "theme": {
+      "type": "enumeration",
+      "default": "Default",
+      "enum": ["Default", "OneWorld", "Odoo"]
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.feature-highlight-item"
+    }
+  }
+}

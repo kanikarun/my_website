@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_blocks_insights",
+  "info": {
+    "displayName": "Insight",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "isHide": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

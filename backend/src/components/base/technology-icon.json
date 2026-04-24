@@ -1,0 +1,26 @@
+{
+  "collectionName": "components_base_technology_icons",
+  "info": {
+    "displayName": "Technology Icon",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string",
+      "required": true
+    },
+    "color": {
+      "type": "string",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "iconLink": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

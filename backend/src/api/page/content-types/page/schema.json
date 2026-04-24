@@ -1,0 +1,66 @@
+{
+  "kind": "collectionType",
+  "collectionName": "pages",
+  "info": {
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "slug": {
+      "type": "string"
+    },
+    "block": {
+      "type": "dynamiczone",
+      "components": [
+        "blocks.testimonial",
+        "blocks.technology",
+        "blocks.team",
+        "blocks.subscribe",
+        "blocks.step-card",
+        "blocks.showcase",
+        "blocks.service",
+        "blocks.portfolio",
+        "blocks.partnership",
+        "blocks.package",
+        "blocks.insight",
+        "blocks.header-section",
+        "blocks.feature-work",
+        "blocks.feature-highlight",
+        "blocks.feature-card",
+        "blocks.faq",
+        "blocks.client",
+        "blocks.carousel",
+        "blocks.call-to-action",
+        "blocks.benefit",
+        "blocks.about"
+      ]
+    },
+    "metaTitle": {
+      "type": "string",
+      "required": true
+    },
+    "metaDescription": {
+      "type": "text"
+    },
+    "metaImage": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "keywords": {
+      "type": "text"
+    }
+  }
+}

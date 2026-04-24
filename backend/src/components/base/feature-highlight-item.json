@@ -1,0 +1,57 @@
+{
+  "collectionName": "components_base_feature_highlight_items",
+  "info": {
+    "displayName": "Feature Highlight Item",
+    "icon": "cube",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "tagline": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "standard"
+      },
+      "required": false,
+      "customField": "plugin::ckeditor.CKEditor"
+    },
+    "btnText": {
+      "type": "string",
+      "required": false
+    },
+    "btnLink": {
+      "type": "string",
+      "required": false
+    },
+    "hashtags": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.hashtag",
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "video": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "videos"
+      ]
+    }
+  }
+}

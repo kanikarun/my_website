@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_blocks_step_cards",
+  "info": {
+    "displayName": "Step Card",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-title"
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.step-card-item",
+      "required": true
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "Two Column",
+        "Three Column",
+        "Four Column",
+        "Five Column"
+      ],
+      "default": "Two Column",
+      "required": true
+    },
+    "bgColor": {
+      "type": "enumeration",
+      "enum": [
+        "Gray",
+        "White"
+      ],
+      "default": "Gray",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "collectionName": "components_blocks_feature_cards",
+  "info": {
+    "displayName": "Feature Card",
+    "icon": "grid",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "displayName": "Section Title",
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-title",
+      "required": false
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.feature-card-item",
+      "required": true
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    },
+    "btnText": {
+      "type": "string",
+      "required": false
+    },
+    "btnLink": {
+      "type": "string"
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "Two Columns",
+        "Three Columns"
+      ],
+      "default": "Two Columns",
+      "required": true
+    }
+  }
+}

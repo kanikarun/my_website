@@ -1,0 +1,43 @@
+{
+  "collectionName": "components_blocks_technologies",
+  "info": {
+    "displayName": "Technology",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "description": {
+      "type": "string"
+    },
+    "icons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.technology-icon"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.button"
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

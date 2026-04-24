@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_base_link_downloads",
+  "info": {
+    "displayName": "Link Download",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "link": {
+      "type": "string"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "android",
+        "ios",
+        "huawei"
+      ],
+      "required": true
+    }
+  }
+}

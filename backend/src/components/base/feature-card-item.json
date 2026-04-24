@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_base_feature_card_items",
+  "info": {
+    "displayName": "Feature Card Item",
+    "icon": "cube"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": false
+    },
+    "tagline": {
+      "type": "string"
+    }
+  }
+}

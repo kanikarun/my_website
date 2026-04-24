@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_base_slider_metrics",
+  "info": {
+    "displayName": "Slider Metric"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "value": {
+      "type": "string",
+      "required": false
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    }
+  }
+}

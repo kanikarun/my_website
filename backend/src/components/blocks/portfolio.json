@@ -1,0 +1,28 @@
+{
+  "collectionName": "components_blocks_portfolios",
+  "info": {
+    "displayName": "Portfolio"
+  },
+  "options": {},
+  "attributes": {
+    "sectionTitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shared.section-title",
+      "required": false
+    },
+    "variant": {
+      "type": "enumeration",
+      "enum": [
+        "All",
+        "Latest"
+      ],
+      "required": true
+    },
+    "isHide": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

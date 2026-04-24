@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_base_feature_slides",
+  "info": {
+    "displayName": "Feature Slide"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text"
+    },
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.button"
+    }
+  }
+}
