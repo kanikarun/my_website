@@ -19,6 +19,7 @@ export const Carousel: React.FC<CarouselProps> = ({ data }) => {
       effect="fade"
       navigation
       slidesPerView={1}
+      loop={true}
       autoplay={{ delay: 5000, disableOnInteraction: false }}
       modules={[Autoplay, EffectFade, Pagination]}
       pagination={{

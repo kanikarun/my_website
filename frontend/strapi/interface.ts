@@ -1,40 +1,28 @@
+import { Locale } from 'next-intl';
+
 export type IAttribute<T> = { id: number; attributes: T };
-export type IArrayResponse<T> = { data: Array<IAttribute<T>>; meta: Meta };
 export type IDataAttribute<T> = { data: IAttribute<T> };
+export type IArrayResponse<T> = { data: Array<IAttribute<T>>; meta: Meta };
 type IResponse<T> = { data: T[]; meta: Meta };
 
-export interface Image {
+interface ImageAttribute {
   name: string;
   url: string;
   formats?: {
-    large?: Image;
-    medium?: Image;
-    small?: Image;
-    thumbnail?: Image;
+    large?: ImageAttribute;
+    medium?: ImageAttribute;
+    small?: ImageAttribute;
+    thumbnail?: ImageAttribute;
   };
 }
 
-interface IInsights {
-  title: string;
-  description: string;
-  slug: string;
-  image?: { data?: IAttribute<Image> };
-  content: string;
-  // ----
-  createdAt: string;
-  insight_categories: InsightCategoriesResponse;
-}
+export type Image = { data?: IAttribute<ImageAttribute> };
+export type Images = { data?: IAttribute<ImageAttribute>[] };
 
-interface IClient {
-  name: string;
-  link: string;
-  moreWidth: boolean;
-  moreHeight: boolean;
-  ordering: number;
-  image?: { data?: IAttribute<Image> };
-  imageDark?: { data?: IAttribute<Image> };
-  type: 'client' | 'partner';
-}
+// Aliases for backward compatibility
+export type IAttributeImageData = Image;
+export type IAttributeImageArrData = Images;
+export type IAttributeImage = IAttribute<ImageAttribute>;
 
 export interface INavItem {
   id: number;
@@ -45,7 +33,7 @@ export interface INavItem {
 export interface INavigation {
   title: string;
   name: string;
-  logo: IAttributeImageData;
+  logo: Image;
   items: INavItem[];
   cta_text: string;
   cta_url: string;
@@ -54,8 +42,8 @@ export interface INavigation {
 export type NavigationResponse = { data: IAttribute<INavigation> };
 
 export interface IConfig {
-  image: IAttributeImageData;
-  image_dark: IAttributeImageData;
+  image: Image;
+  image_dark: Image;
   slogan: string;
   linkedin_url: string;
   facebook_url: string;
@@ -76,24 +64,6 @@ interface IBanner {
   show: boolean;
 }
 
-export interface IPageBlock {
-  id: number;
-  __component:
-    | 'blocks.about'
-    | 'blocks.benefit'
-    | 'blocks.blog'
-    | 'blocks.call-to-action'
-    | 'blocks.carousel'
-    | 'blocks.client'
-    | 'blocks.feature-work'
-    | 'blocks.partnership'
-    | 'blocks.service'
-    | 'blocks.subscribe'
-    | 'blocks.showcase'
-    | 'blocks.technology'
-    | 'blocks.testimonial';
-}
-
 export interface IButton {
   text: string;
   link?: string;
@@ -109,12 +79,12 @@ export interface ISlider {
   title: string;
   subtitle?: string;
   tagline?: string;
-  image: IAttributeImageData;
+  image: Image;
   buttons: IButton[];
   metrics: ISliderMetric[];
 }
 
-export interface ICarousel extends IPageBlock {
+export interface ICarousel {
   __component: 'blocks.carousel';
   sliders: ISlider[];
   theme: 'OneWorld' | 'Odoo';
@@ -126,20 +96,33 @@ export interface IPage {
   block: Array<ICarousel>;
   metaTitle: string;
   metaDescription?: string;
-  metaImage?: IAttributeImageData;
+  metaImage?: Image;
   keywords?: string;
 }
 
+export interface IInsights {
+  title: string;
+  description: string;
+  slug: string;
+  image?: Image;
+  content: string;
+  createdAt: string;
+  insight_categories: InsightCategoriesResponse;
+}
+
+export interface IClient {
+  name: string;
+  link: string;
+  moreWidth: boolean;
+  moreHeight: boolean;
+  ordering: number;
+  image?: Image;
+  imageDark?: Image;
+  type: 'client' | 'partner';
+}
 
 export type BannerResponse = { data: IAttribute<IBanner> };
 export type ConfigResponse = { data: IAttribute<IConfig> };
-
-
-export type IAttributeImageArrData = { data?: IAttribute<Image>[] };
-export type IAttributeImageData = { data?: IAttribute<Image> };
-export type IAttributeImage = IAttribute<Image>;
-
-export type Video = { data?: IAttribute<{ url: string }> };
 
 export type InsightAttribute = IAttribute<IInsights>;
 export type InsightsResponse = IResponse<InsightAttribute>;
@@ -152,7 +135,6 @@ export type InsightCategoryResponse = { data: InsightCategoryAttribute; meta: Me
 export type ClientAttribute = IAttribute<IClient>;
 export type ClientsResponse = IResponse<ClientAttribute>;
 export type ClientResponse = { data: ClientAttribute; meta: Meta };
-
 
 export type PageAttribute = IAttribute<IPage>;
 export type PagesResponse = IResponse<PageAttribute>;
@@ -171,3 +153,7 @@ export interface Pagination {
   page: number;
   pageSize: number;
 }
+
+export type Video = { data?: IAttribute<{ url: string }> };
+
+export type { Locale };

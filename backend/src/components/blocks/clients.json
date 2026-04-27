@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_blocks_clients",
+  "info": {
+    "displayName": "clients",
+    "icon": "user"
+  },
+  "options": {},
+  "attributes": {
+    "client_label": {
+      "type": "string"
+    },
+    "client_items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "base.client-item"
+    }
+  }
+}

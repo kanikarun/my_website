@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Marquee from 'react-fast-marquee';
 
@@ -22,7 +24,7 @@ export const ClientMarquee: React.FC<Props> = ({ data, direction }) => {
 interface ClientLogoProps {
   name: string;
   image: { light: string; dark: string };
-  link: string;
+  link?: string;
 }
 
 const ClientLogo: React.FC<ClientLogoProps> = ({ name, image, link }) => {

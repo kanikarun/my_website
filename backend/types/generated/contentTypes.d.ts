@@ -362,42 +362,6 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
-export interface ApiClientClient extends Schema.CollectionType {
-  collectionName: 'clients';
-  info: {
-    description: '';
-    displayName: 'Client';
-    pluralName: 'clients';
-    singularName: 'client';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    createdAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    image: Attribute.Media<'images'> & Attribute.Required;
-    imageDark: Attribute.Media<'images'> & Attribute.Required;
-    link: Attribute.String;
-    name: Attribute.String & Attribute.Required;
-    ordering: Attribute.Integer;
-    publishedAt: Attribute.DateTime;
-    type: Attribute.Enumeration<['Company', 'Individual']> & Attribute.Required;
-    updatedAt: Attribute.DateTime;
-    updatedBy: Attribute.Relation<
-      'api::client.client',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface ApiConfigConfig extends Schema.SingleType {
   collectionName: 'configs';
   info: {
@@ -575,6 +539,11 @@ export interface ApiPagePage extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     block: Attribute.DynamicZone<
       [
@@ -594,22 +563,59 @@ export interface ApiPagePage extends Schema.CollectionType {
         'blocks.feature-highlight',
         'blocks.feature-card',
         'blocks.faq',
-        'blocks.client',
         'blocks.carousel',
         'blocks.call-to-action',
         'blocks.benefit',
-        'blocks.about'
+        'blocks.about',
+        'blocks.clients'
       ]
-    >;
+    > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
       Attribute.Private;
-    keywords: Attribute.Text;
-    metaDescription: Attribute.Text;
-    metaImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
-    metaTitle: Attribute.String & Attribute.Required;
+    keywords: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::page.page',
+      'oneToMany',
+      'api::page.page'
+    >;
+    metaDescription: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    metaImage: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    metaTitle: Attribute.String &
+      Attribute.Required &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.String;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<'api::page.page', 'oneToOne', 'admin::user'> &
       Attribute.Private;
@@ -1052,7 +1058,6 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
-      'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;

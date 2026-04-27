@@ -13,6 +13,21 @@ export interface BaseButton extends Schema.Component {
   };
 }
 
+export interface BaseClientItem extends Schema.Component {
+  collectionName: 'components_base_client_items';
+  info: {
+    description: '';
+    displayName: 'client-item';
+    icon: 'chartBubble';
+  };
+  attributes: {
+    image_dark: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    image_light: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    link: Attribute.String;
+    name: Attribute.String;
+  };
+}
+
 export interface BaseFaqItem extends Schema.Component {
   collectionName: 'components_base_faq_items';
   info: {
@@ -40,7 +55,7 @@ export interface BaseFeature extends Schema.Component {
     displayName: 'Feature';
   };
   attributes: {
-    icon: Attribute.String & Attribute.Required;
+    icon: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     subtitle: Attribute.Text;
     title: Attribute.String & Attribute.Required;
   };
@@ -175,7 +190,7 @@ export interface BaseSlider extends Schema.Component {
   };
   attributes: {
     buttons: Attribute.Component<'base.button', true>;
-    image: Attribute.Media<'images'> & Attribute.Required;
+    image: Attribute.Media<'images', true> & Attribute.Required;
     metrics: Attribute.Component<'base.slider-metric', true>;
     subtitle: Attribute.String;
     tagline: Attribute.String;
@@ -288,16 +303,15 @@ export interface BlocksCarousel extends Schema.Component {
   };
 }
 
-export interface BlocksClient extends Schema.Component {
+export interface BlocksClients extends Schema.Component {
   collectionName: 'components_blocks_clients';
   info: {
-    description: '';
-    displayName: 'Client';
+    displayName: 'clients';
+    icon: 'user';
   };
   attributes: {
-    isHide: Attribute.Boolean & Attribute.DefaultTo<false>;
-    sectionTitle: Attribute.Component<'shared.section-title'>;
-    type: Attribute.Enumeration<['Company', 'Individual']>;
+    client_items: Attribute.Component<'base.client-item', true>;
+    client_label: Attribute.String;
   };
 }
 
@@ -434,6 +448,7 @@ export interface BlocksService extends Schema.Component {
     displayName: 'Service';
   };
   attributes: {
+    button: Attribute.Component<'base.button'>;
     description: Attribute.Text;
     features: Attribute.Component<'base.feature', true>;
     isHide: Attribute.Boolean & Attribute.DefaultTo<false>;
@@ -594,6 +609,7 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'base.button': BaseButton;
+      'base.client-item': BaseClientItem;
       'base.faq-item': BaseFaqItem;
       'base.feature': BaseFeature;
       'base.feature-card-item': BaseFeatureCardItem;
@@ -612,7 +628,7 @@ declare module '@strapi/types' {
       'blocks.benefit': BlocksBenefit;
       'blocks.call-to-action': BlocksCallToAction;
       'blocks.carousel': BlocksCarousel;
-      'blocks.client': BlocksClient;
+      'blocks.clients': BlocksClients;
       'blocks.faq': BlocksFaq;
       'blocks.feature-card': BlocksFeatureCard;
       'blocks.feature-highlight': BlocksFeatureHighlight;

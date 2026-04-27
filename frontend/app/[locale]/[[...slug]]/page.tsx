@@ -14,7 +14,9 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const page = await getPage(slug?.[0] || 'home', 'en');
+
   if (!page) return {};
+
   return getMetadata(page);
 }
 
@@ -22,7 +24,7 @@ export default async function Page(props: PageProps) {
   const { slug, locale } = await props.params;
 
   const page = await getPage(slug?.[0] || 'home', locale);
-  if (!page) notFound();
+  if (!page) return notFound();
 
-  return <BlockManager blocks={getBlocks(page!.block)} locale={locale} />;
+  return <BlockManager blocks={getBlocks(page.block)} locale={locale} />;
 }

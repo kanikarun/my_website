@@ -15,8 +15,14 @@
       "required": false
     },
     "icon": {
-      "type": "string",
-      "required": true
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }

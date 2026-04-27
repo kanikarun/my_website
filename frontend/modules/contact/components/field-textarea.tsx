@@ -33,7 +33,7 @@ export function FieldTextarea<T extends FieldValues>(
             disabled={disabled || formState.isSubmitting}
             aria-invalid={fieldState.invalid}
             placeholder={placeholder}
-            className="text-sm md:text-base!"
+            className="text-sm h-45 md:text-base!"
             rows={6}
           />
           <FieldError errors={[fieldState.error]} />

@@ -1,10 +1,13 @@
-import { Locale } from 'next-intl';
+import { Locale } from "next-intl";
 
-import { Carousel } from '@/components/organisms/carousel';
-import { TemplateClient } from '@/components/templates/client';
+import { Carousel } from "@/components/organisms/carousel";
+import { TemplateClient } from "@/components/templates/client";
+import { TemplateFeatureCard } from "@/components/templates/feature-card";
 
-import { BlockError, ErrorComponent } from './block-error';
-import { BlockComponentProps } from './block-manager.interface';
+import { BlockError, ErrorComponent } from "./block-error";
+import { BlockComponentProps } from "./block-manager.interface";
+import { TemplateServices } from '../services';
+import { TemplateFeatureHighlight } from "../feature-highlight";
 
 interface Props {
   locale: Locale;
@@ -26,13 +29,23 @@ export const BlockManager: React.FC<Props> = ({ blocks, locale }) => (
   </>
 );
 
-const BlockComponent: React.FC<BlockComponentProps> = block => {
+export const BlockComponent: React.FC<BlockComponentProps> = (block) => {
   switch (block.__component) {
-    case 'blocks.carousel':
+    case "blocks.carousel":
       return <Carousel {...block.data} />;
-    case 'blocks.client':
+    case "blocks.clients":
       return <TemplateClient {...block.data} />;
+    case "blocks.template-service":
+      return <TemplateServices {...block.data} />;
+    case "blocks.template-feature-card":
+      return <TemplateFeatureCard {...block.data} />;
+      case "blocks.template-feature-highlight":
+        return<TemplateFeatureHighlight{...block.data}/>
     default:
-      return <ErrorComponent message={`Unknown component: ${(block as BlockComponentProps).__component}`} />;
+      return (
+        <ErrorComponent
+          message={`Unknown component: ${(block as BlockComponentProps).__component}`}
+        />
+      );
   }
 };

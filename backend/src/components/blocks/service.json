@@ -22,6 +22,11 @@
       "repeatable": true,
       "component": "base.feature"
     },
+    "button": {
+      "type": "component",
+      "repeatable": false,
+      "component": "base.button"
+    },
     "isHide": {
       "type": "boolean",
       "default": false

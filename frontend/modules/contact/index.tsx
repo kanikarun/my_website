@@ -1,6 +1,6 @@
 import { getTranslations } from 'next-intl/server';
 
-import { TemplateHeaderSection } from '@/components/templates';
+import { TemplateHeaderSection } from '@/components/templates/header-section';
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 
 import { ContactAddress } from './components/contact-address';

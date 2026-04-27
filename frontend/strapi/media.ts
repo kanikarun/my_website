@@ -1,10 +1,10 @@
 import { getStaticURL } from './api';
-import { IAttributeImageData, Video } from './interface';
+import { Image, Video } from './interface';
 
 export const STRAPI_IMAGE_FIELDS = { fields: ['url', 'name', 'formats', 'blurhash'] };
 export const STRAPI_FILE_FIELDS = { fields: ['url', 'name'] };
 
-export function getStrapiMedia(media?: IAttributeImageData, size?: 'S' | 'M' | 'T' | 'L') {
+export function getStrapiMedia(media?: Image, size?: 'S' | 'M' | 'T' | 'L') {
   // ! Note `media?.data?.attributes` is for Strapi & media object is for meilisearch
   // const { url = '', formats = '' } = media?.data?.attributes || media?.attributes || media || {};
   const { url = '', formats } = media?.data?.attributes || {};
@@ -29,7 +29,7 @@ export function getStrapiMedia(media?: IAttributeImageData, size?: 'S' | 'M' | '
 
   imgUrl = imgUrl || url;
 
-  return url.startsWith('/') ? imgUrl : imgUrl;
+  return imgUrl;
 }
 
 export function getStrapiVideo(video?: Video) {
