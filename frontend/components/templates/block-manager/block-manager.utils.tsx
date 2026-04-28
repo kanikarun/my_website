@@ -12,6 +12,7 @@ import { TemplatePortfolio } from "../portfolio";
 import { TemplateTestimonial } from "../testimonial";
 import { TemplateCTA } from "../cta";
 import { TemplateHeaderSection } from "../header-section";
+import { TemplateStepCard } from "../step-card";
 
 interface Props {
   locale: Locale;
@@ -76,6 +77,8 @@ const BlockComponent: React.FC<BlockComponentProps> = ({
       return <TemplateCTA {...data} />;
     case 'blocks.template-header-section':
       return <TemplateHeaderSection {...data} />;
+      case 'blocks.template-step-card':
+        return<TemplateStepCard {...data}/>
 
     default:
       return <ErrorComponent message={`Unknown component: ${__component}`} />;

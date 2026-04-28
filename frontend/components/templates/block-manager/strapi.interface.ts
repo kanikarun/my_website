@@ -10,6 +10,7 @@ type BlockComponent =
   | "blocks.testimonial"
   | "blocks.call-to-action"
   | 'blocks.header-section'
+  | 'blocks.step-card';
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
   __component: Comp;
@@ -29,7 +30,8 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.portfolio", IBlockPortfolio>
   | IStrapiBlock<"blocks.testimonial", IBlockTestimonial>
   | IStrapiBlock<'blocks.call-to-action', IBlockCTA>
-  | IStrapiBlock<'blocks.header-section', IBlockHeaderSection>;
+  | IStrapiBlock<'blocks.header-section', IBlockHeaderSection>
+  | IStrapiBlock<'blocks.step-card', IBlockStepCard>;
   
 
 // ------------------------------
@@ -147,4 +149,12 @@ interface IBlockHeaderSection {
   description?: string;
   image: Image;
   isHide: boolean;
+}
+
+interface IBlockStepCard {
+  sectionTitle: ISharedSectionTitle;
+  bgColor: 'Gray' | 'White';
+  variant: 'Two Column' | 'Three Column' | 'Four Column' | 'Five Column';
+  items: Array<{ title: string; description: string }>;
+  isHide?: boolean;
 }
