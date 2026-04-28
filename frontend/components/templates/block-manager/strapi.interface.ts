@@ -5,7 +5,9 @@ type BlockComponent =
   | "blocks.clients"
   | "blocks.service"
   | "blocks.feature-card"
-  | "blocks.feature-highlight";
+  | "blocks.feature-highlight"
+  | "blocks.portfolio"
+  | "blocks.testimonial"; 
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
   __component: Comp;
@@ -21,7 +23,9 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.clients", IBlockClient>
   | IStrapiBlock<"blocks.service", IBlockServices>
   | IStrapiBlock<"blocks.feature-card", IBlockFeatureCard>
-  | IStrapiBlock<"blocks.feature-highlight", IBlockFeatureHighlight>;
+  | IStrapiBlock<"blocks.feature-highlight", IBlockFeatureHighlight>
+  | IStrapiBlock<"blocks.portfolio", IBlockPortfolio>
+  | IStrapiBlock<"blocks.testimonial", IBlockTestimonial>;
 
 // ------------------------------
 // BLOCK
@@ -74,12 +78,13 @@ interface IBlockFeatureHighlight {
   orientation: "Horizontal" | "Vertical";
   theme: "Default" | "OneWorld" | "Odoo";
   items: Array<{
+    btnLink: any;
+    btnText: any;
     tagline?: string;
     title: string;
     description: string;
     hashtags?: { label: string; link?: string }[];
-    btnText?: string;
-    btnLink?: string;
+    button?: { text: string; link?: string; target?: string };
     image?: Image;
     video?: Video;
   }>;
@@ -93,12 +98,34 @@ interface IBlockServices {
   button?: { text: string; link?: string; target?: string };
   isHide: boolean;
 }
+
+interface IBlockPortfolio {
+  sectionTitle?: ISharedSectionTitle;
+  variant: "All" | "Latest";
+  isHide: boolean;
+}
 // ------------------------------
 // SHARED
 // ------------------------------
-
+interface ISharedSectionTitle {
+  tagline?: string;
+  title?: string;
+  description?: string;
+}
 interface ISharedLinkButton {
   text: string;
   link: string;
   target?: "_blank";
+}
+
+interface IBlockTestimonial {
+  title: string;
+  subtitle: string;
+  people: {
+    image: Image;
+    name: string;
+    position: string;
+    content: string;
+  }[];
+  isHide: boolean;
 }

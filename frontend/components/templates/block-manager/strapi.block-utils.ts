@@ -16,8 +16,12 @@ function getBlock(block: IStrapiBlocks) {
       return blockService(block);
     case "blocks.feature-card":
       return blockFeatureCard(block);
-      case "blocks.feature-highlight":
-        return blockFeatureHighlight(block);
+    case "blocks.feature-highlight":
+      return blockFeatureHighlight(block);
+    case "blocks.portfolio":
+      return blockPortfolio(block);
+      case "blocks.testimonial":
+      return blockTestimonial(block);
     default:
       return null;
   }
@@ -69,13 +73,13 @@ function blockClient(block: IExtractStrapiBlock<"blocks.clients">) {
   } as IExtractBlock<"blocks.clients">;
 }
 
-function blockFeatureCard(block: IExtractStrapiBlock<'blocks.feature-card'>) {
+function blockFeatureCard(block: IExtractStrapiBlock<"blocks.feature-card">) {
   const { isHide, sectionTitle, items, variant, btnText, btnLink } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-feature-card',
+    __component: "blocks.template-feature-card",
     data: {
       sectionTitle,
       data: items?.map((item) => ({
@@ -88,48 +92,84 @@ function blockFeatureCard(block: IExtractStrapiBlock<'blocks.feature-card'>) {
       btnText,
       btnLink,
     },
-  } as IExtractBlock<'blocks.template-feature-card'>;
+  } as IExtractBlock<"blocks.template-feature-card">;
 }
 
-function blockService(block: IExtractStrapiBlock<'blocks.service'>) {
+function blockService(block: IExtractStrapiBlock<"blocks.service">) {
   const { isHide, title, subtitle, description, features, button } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-service',
+    __component: "blocks.template-service",
     data: {
       title,
       subtitle,
       description,
       features,
       button,
-      isHide
-    }
-  } as IExtractBlock<'blocks.template-service'>;
+      isHide,
+    },
+  } as IExtractBlock<"blocks.template-service">;
 }
 
-
-function blockFeatureHighlight(block: IExtractStrapiBlock<'blocks.feature-highlight'>) {
+function blockFeatureHighlight(
+  block: IExtractStrapiBlock<"blocks.feature-highlight">,
+) {
   const { isHide, orientation, theme, items } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-feature-highlight',
+    __component: "blocks.template-feature-highlight",
     data: {
       orientation,
       theme,
-      items: items.map(x => ({
+      items: items.map((x) => ({
         title: x.title,
         description: x.description,
         image: getStrapiMedia(x.image),
         video: getStrapiVideo(x.video),
-        btnText: x.btnText,
+        btnText: x.btnText, 
         btnLink: x.btnLink,
         tagline: x.tagline,
-        hashtags: x.hashtags
+        hashtags: x.hashtags,
+      })),
+    },
+  } as IExtractBlock<"blocks.template-feature-highlight">;
+}
+
+function blockPortfolio(block: IExtractStrapiBlock<"blocks.portfolio">) {
+  const { isHide, variant, sectionTitle } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: "blocks.template-portfolio",
+    data: {
+      variant,
+      sectionTitle,
+    },
+  } as IExtractBlock<"blocks.template-portfolio">;
+}
+
+function blockTestimonial(block: IExtractStrapiBlock<'blocks.testimonial'>) {
+  const { isHide, title, subtitle, people } = block;
+  const sectionTitle = title && subtitle ? { tagline: title, title: subtitle } : undefined;
+
+  if (isHide) return null;
+
+  return {
+    __component: 'blocks.template-testimonial',
+    data: {
+      sectionTitle,
+      items: people.map(x => ({
+        name: x.name,
+        position: x.position,
+        content: x.content,
+        image: getStrapiMedia(x.image)
       }))
     }
-  } as IExtractBlock<'blocks.template-feature-highlight'>;
+  } as IExtractBlock<'blocks.template-testimonial'>;
 }
+  

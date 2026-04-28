@@ -5,23 +5,29 @@ import { TemplateClient } from "@/components/templates/client";
 import { TemplateFeatureCard } from "@/components/templates/feature-card";
 
 import { BlockError, ErrorComponent } from "./block-error";
-import { BlockComponentProps } from "./block-manager.interface";
-import { TemplateServices } from '../services';
+import { BlockComponentProps, BlockOption } from "./block-manager.interface";
+import { TemplateServices } from "../services";
 import { TemplateFeatureHighlight } from "../feature-highlight";
+import { TemplatePortfolio } from "../portfolio";
+import { TemplateTestimonial } from "../testimonial";
+
+
 
 interface Props {
   locale: Locale;
   blocks: (BlockComponentProps | null)[];
+  searchParams: any;
+  options?: BlockOption;
 }
 
-export const BlockManager: React.FC<Props> = ({ blocks, locale }) => (
+export const BlockManager: React.FC<Props> = ({ blocks, locale, options, searchParams }) => (
   <>
     {blocks.map((x, i) => {
       if (!x) return null;
       return (
         <section key={i} data-name={x.__component}>
           <BlockError>
-            <BlockComponent {...x} locale={locale} />
+            <BlockComponent {...x} locale={locale} options={options} searchParams={searchParams} />
           </BlockError>
         </section>
       );
@@ -29,23 +35,33 @@ export const BlockManager: React.FC<Props> = ({ blocks, locale }) => (
   </>
 );
 
-export const BlockComponent: React.FC<BlockComponentProps> = (block) => {
-  switch (block.__component) {
-    case "blocks.carousel":
-      return <Carousel {...block.data} />;
-    case "blocks.clients":
-      return <TemplateClient {...block.data} />;
-    case "blocks.template-service":
-      return <TemplateServices {...block.data} />;
-    case "blocks.template-feature-card":
-      return <TemplateFeatureCard {...block.data} />;
-      case "blocks.template-feature-highlight":
-        return<TemplateFeatureHighlight{...block.data}/>
+
+
+const BlockComponent: React.FC<BlockComponentProps> = ({ __component, data, options, locale = 'en', searchParams }) => {
+  const {
+    /* page, override */
+  } = options || {};
+
+  switch (__component) {
+
+    case 'blocks.carousel':
+      return <Carousel {...data} />;
+
+    case 'blocks.template-feature-highlight':
+      return <TemplateFeatureHighlight {...data} />;
+    case 'blocks.template-feature-card':
+      return <TemplateFeatureCard {...data} />;
+      case 'blocks.clients':
+      return <TemplateClient {...data} />;
+    case 'blocks.template-portfolio':
+      return <TemplatePortfolio {...data} searchParams={searchParams} locale={locale} />;
+    case 'blocks.template-service':
+      return <TemplateServices {...data} />;
+    case 'blocks.template-testimonial':
+      return <TemplateTestimonial {...data} />;
+
+
     default:
-      return (
-        <ErrorComponent
-          message={`Unknown component: ${(block as BlockComponentProps).__component}`}
-        />
-      );
+      return <ErrorComponent message={`Unknown component: ${__component}`} />;
   }
 };
