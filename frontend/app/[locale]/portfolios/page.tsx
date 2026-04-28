@@ -1,29 +1,35 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { Locale } from 'next-intl';
 
-import { siteConfig } from '@/config/site-config';
-import { getPortfolios } from '@/modules/portfolio/api/portfolio.api';
-import { PortfolioList } from '@/modules/portfolio/portfolio-list';
+import { BlockManager, getBlocks } from '@/components/templates/block-manager';
+import { getPage } from '@/modules/page/api/page.api';
+import { getMetadata } from '@/utils/next-metadata';
 
 interface PageProps {
   params: Promise<{ locale: Locale }>;
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
-export const metadata: Metadata = {
-  title: `Portfolio | ${siteConfig.name}`,
-  description: siteConfig.description,
-};
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const page = await getPage('portfolio', locale);
+  if (!page) return {};
+  return getMetadata(page);
+}
 
 export default async function Page({ params, searchParams }: PageProps) {
   const { locale } = await params;
-  const { type, page } = await searchParams;
+  const resolvedSearchParams = await searchParams;
+  const page = await getPage('portfolio', locale);
 
-  const data = await getPortfolios({
-    locale,
-    type: typeof type === 'string' ? type : undefined,
-    page: typeof page === 'string' ? +page : 1,
-  });
+  if (!page) return notFound();
 
-  return <PortfolioList locale={locale} data={data} />;
+  return (
+    <BlockManager
+      blocks={getBlocks(page.block)}
+      locale={locale}
+      searchParams={resolvedSearchParams}
+    />
+  );
 }

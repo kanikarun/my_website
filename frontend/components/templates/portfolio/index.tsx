@@ -18,7 +18,6 @@ export const TemplatePortfolio: React.FC<TemplatePortfolioProps> = async ({
   searchParams,
   ...rest
 }) => {
-  console.log('[TemplatePortfolio] variant:', variant, 'locale:', rest.locale);
   switch (variant) {
     case "Latest":
       return <PortfolioLatest {...rest} />;
