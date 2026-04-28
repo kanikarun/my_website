@@ -1,6 +1,6 @@
-import { IArrayResponse, IAttribute, IDataAttribute, Image } from '@/strapi';
+import { IArrayResponse, IAttribute, IDataAttribute, Image } from "@/strapi";
 
-export type ClientType = 'Company' | 'Individual';
+export type ClientType = "Company" | "Individual";
 
 interface IClient {
   name: string;

@@ -7,7 +7,9 @@ type BlockComponent =
   | "blocks.feature-card"
   | "blocks.feature-highlight"
   | "blocks.portfolio"
-  | "blocks.testimonial"; 
+  | "blocks.testimonial"
+  | "blocks.call-to-action"
+  | 'blocks.header-section'
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
   __component: Comp;
@@ -25,7 +27,10 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.feature-card", IBlockFeatureCard>
   | IStrapiBlock<"blocks.feature-highlight", IBlockFeatureHighlight>
   | IStrapiBlock<"blocks.portfolio", IBlockPortfolio>
-  | IStrapiBlock<"blocks.testimonial", IBlockTestimonial>;
+  | IStrapiBlock<"blocks.testimonial", IBlockTestimonial>
+  | IStrapiBlock<'blocks.call-to-action', IBlockCTA>
+  | IStrapiBlock<'blocks.header-section', IBlockHeaderSection>;
+  
 
 // ------------------------------
 // BLOCK
@@ -44,17 +49,12 @@ interface IBlockCarousel {
   isHide?: boolean;
 }
 
-export interface IBlockClient {
-  client_label?: string;
-  client_items?: IClientItem[];
+interface IBlockClient {
+  sectionTitle?: ISharedSectionTitle;
+  type?: "Company" | "Individual";
+  isHide: boolean;
 }
 
-interface IClientItem {
-  name?: string;
-  link?: string;
-  image_light?: Image;
-  image_dark?: Image;
-}
 
 interface IBlockFeatureCard {
   sectionTitle?: {
@@ -104,6 +104,16 @@ interface IBlockPortfolio {
   variant: "All" | "Latest";
   isHide: boolean;
 }
+
+interface IBlockCTA {
+  variant: 'OneWorld' | 'Odoo';
+  title: string;
+  subtitle?: string;
+  image: Image;
+  link?: string;
+  buttons: Array<ISharedLinkButton>;
+  isHide: boolean;
+}
 // ------------------------------
 // SHARED
 // ------------------------------
@@ -127,5 +137,14 @@ interface IBlockTestimonial {
     position: string;
     content: string;
   }[];
+  isHide: boolean;
+}
+
+
+interface IBlockHeaderSection {
+  tagline?: string;
+  title: string;
+  description?: string;
+  image: Image;
   isHide: boolean;
 }

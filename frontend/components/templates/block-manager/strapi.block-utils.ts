@@ -20,8 +20,12 @@ function getBlock(block: IStrapiBlocks) {
       return blockFeatureHighlight(block);
     case "blocks.portfolio":
       return blockPortfolio(block);
-      case "blocks.testimonial":
+    case "blocks.testimonial":
       return blockTestimonial(block);
+    case "blocks.call-to-action":
+      return blockCTA(block);
+    case "blocks.header-section":
+      return blockHeaderSection(block);
     default:
       return null;
   }
@@ -55,22 +59,17 @@ function blockCarousel(block: IExtractStrapiBlock<"blocks.carousel">) {
 }
 
 function blockClient(block: IExtractStrapiBlock<"blocks.clients">) {
-  const { client_label, client_items } = block;
+  const { isHide, sectionTitle, type } = block;
+
+  if (isHide) return null;
 
   return {
-    __component: "blocks.clients",
+    __component: "blocks.template-clients",
     data: {
-      client_label,
-      logo: client_items?.map((item) => ({
-        name: item.name ?? "",
-        link: item.link,
-        image: {
-          light: getStrapiMedia(item.image_light),
-          dark: getStrapiMedia(item.image_dark),
-        },
-      })),
+      sectionTitle,
+      type,
     },
-  } as IExtractBlock<"blocks.clients">;
+  } as IExtractBlock<"blocks.template-clients">;
 }
 
 function blockFeatureCard(block: IExtractStrapiBlock<"blocks.feature-card">) {
@@ -130,7 +129,7 @@ function blockFeatureHighlight(
         description: x.description,
         image: getStrapiMedia(x.image),
         video: getStrapiVideo(x.video),
-        btnText: x.btnText, 
+        btnText: x.btnText,
         btnLink: x.btnLink,
         tagline: x.tagline,
         hashtags: x.hashtags,
@@ -139,37 +138,74 @@ function blockFeatureHighlight(
   } as IExtractBlock<"blocks.template-feature-highlight">;
 }
 
-function blockPortfolio(block: IExtractStrapiBlock<"blocks.portfolio">) {
+function blockPortfolio(block: IExtractStrapiBlock<'blocks.portfolio'>) {
   const { isHide, variant, sectionTitle } = block;
 
   if (isHide) return null;
 
   return {
-    __component: "blocks.template-portfolio",
+    __component: 'blocks.template-portfolio',
     data: {
       variant,
-      sectionTitle,
-    },
-  } as IExtractBlock<"blocks.template-portfolio">;
+      sectionTitle
+    }
+  } as IExtractBlock<'blocks.template-portfolio'>;
 }
 
-function blockTestimonial(block: IExtractStrapiBlock<'blocks.testimonial'>) {
+
+function blockTestimonial(block: IExtractStrapiBlock<"blocks.testimonial">) {
   const { isHide, title, subtitle, people } = block;
-  const sectionTitle = title && subtitle ? { tagline: title, title: subtitle } : undefined;
+  const sectionTitle =
+    title && subtitle ? { tagline: title, title: subtitle } : undefined;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-testimonial',
+    __component: "blocks.template-testimonial",
     data: {
       sectionTitle,
-      items: people.map(x => ({
+      items: people.map((x) => ({
         name: x.name,
         position: x.position,
         content: x.content,
-        image: getStrapiMedia(x.image)
-      }))
-    }
-  } as IExtractBlock<'blocks.template-testimonial'>;
+        image: getStrapiMedia(x.image),
+      })),
+    },
+  } as IExtractBlock<"blocks.template-testimonial">;
 }
-  
+
+
+function blockHeaderSection(block: IExtractStrapiBlock<'blocks.header-section'>) {
+  const { isHide, tagline, title, description, image } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: 'blocks.template-header-section',
+    data: {
+      tagline,
+      title,
+      description,
+      image: getStrapiMedia(image)
+    }
+  } as IExtractBlock<'blocks.template-header-section'>;
+}
+
+function blockCTA(block: IExtractStrapiBlock<"blocks.call-to-action">) {
+  const { isHide, variant, title, subtitle, buttons, image, link } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: "blocks.template-call-to-action",
+    data: {
+      isHide,
+      variant,
+      title,
+      subtitle,
+      buttons,
+      image: getStrapiMedia(image),
+      link,
+    },
+  } as IExtractBlock<"blocks.template-call-to-action">;
+}

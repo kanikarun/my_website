@@ -1,26 +1,21 @@
-import { Props as SectionTitleProps } from '@/components/molecules/section-title';
-import { ClientMarquee } from '@/components/organisms/client/misc';
-import { ClientLogoProps } from '@/components/templates/block-manager/strapi.interface';
+import { Props as SectionTitleProps } from "@/components/molecules/section-title";
+import { ClientListAll, ClientListByType } from "@/components/organisms/client";
+import { getClient } from "@/modules/client/api/client.api";
+import { ClientType } from "@/modules/client/api/client.interface";
 
 export interface TemplateClientProps {
   sectionTitle?: SectionTitleProps;
-  client_label?: string;
-  logo?: ClientLogoProps[];
+  type?: ClientType;
 }
 
-export const TemplateClient: React.FC<TemplateClientProps> = ({ sectionTitle, client_label, logo }) => {
-  if (!logo?.length) return null;
+export const TemplateClient: React.FC<TemplateClientProps> = async ({
+  sectionTitle,
+  type,
+}) => {
+  const data = await getClient(type);
 
-  return (
-    <div className="py-6 border-y border-border dark:bg-black">
-      <div className="container flex lg:flex-row flex-col items-center space-y-6 lg:space-y-0">
-        {(sectionTitle?.title || client_label) && (
-          <h5 className="max-w-xs text-sm sm:text-base text-center lg:text-left w-full font-semibold">
-            {sectionTitle?.title || client_label}
-          </h5>
-        )}
-        <ClientMarquee data={logo} />
-      </div>
-    </div>
-  );
+  if (!data?.data?.length) return null;
+
+  const Component = type ? ClientListByType : ClientListAll;
+  return <Component sectionTitle={sectionTitle} data={data} />;
 };
