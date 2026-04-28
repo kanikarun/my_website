@@ -51,25 +51,35 @@ export async function getPortfolioDetail(
   id: number,
   locale: Locale,
 ): Promise<I.GetPortfolioResponse | null> {
-  const res = await fetchAPI<I.PortfolioResponse>(`/portfolios/${id}`, {
-    locale: "en",
-    populate: {
-      image: STRAPI_IMAGE_FIELDS,
-      portfolio_categories: { fields: ["en", "km"] },
-      localizations: { fields: ["*"] },
-    },
-  });
+  try {
+    const res = await fetchAPI<I.PortfolioResponse>(`/portfolios/${id}`, {
+      locale: "en",
+      populate: {
+        image: STRAPI_IMAGE_FIELDS,
+        portfolio_categories: { fields: ["en", "km"] },
+        localizations: { fields: ["*"] },
+      },
+    });
 
-  const localize = getAttributes(res.data.attributes.localizations, locale);
-  const { attributes: attr } = res.data;
+    if (!res?.data) return null;
 
-  return {
-    data: {
-      ...attr,
-      ...localize?.attributes,
-      id,
-      image: getStrapiMedia(attr.image),
-      categories: attr.portfolio_categories.data.map((x) => x.attributes.en),
-    },
-  };
+    const { attributes: attr } = res.data;
+    const localize = attr.localizations?.data
+      ? getAttributes(attr.localizations, locale)
+      : undefined;
+
+    return {
+      data: {
+        ...attr,
+        ...localize?.attributes,
+        id,
+        image: getStrapiMedia(attr.image),
+        portfolio_categories:
+          attr.portfolio_categories?.data?.map((x: any) => x.attributes.en) ??
+          [],
+      },
+    };
+  } catch {
+    return null;
+  }
 }

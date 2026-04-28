@@ -17,7 +17,7 @@ export interface GetPortfoliosResponse {
     title: string;
     description?: string;
     image: string;
-    categories?: string[];
+   portfolio_categories?: string[];
   }[];
 }
 
@@ -29,7 +29,7 @@ export interface GetPortfolioResponse {
     content: string;
     image: string;
     createdAt: string;
-    categories?: string[];
+    portfolio_categories?: string[];
   };
 }
 
