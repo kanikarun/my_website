@@ -13,6 +13,7 @@ import { TemplateTestimonial } from "../testimonial";
 import { TemplateCTA } from "../cta";
 import { TemplateHeaderSection } from "../header-section";
 import { TemplateStepCard } from "../step-card";
+import { TemplatePackage } from "../package";
 
 interface Props {
   locale: Locale;
@@ -67,18 +68,26 @@ const BlockComponent: React.FC<BlockComponentProps> = ({
       return <TemplateFeatureCard {...data} />;
     case "blocks.template-clients":
       return <TemplateClient {...data} />;
-    case 'blocks.template-portfolio':
-      return <TemplatePortfolio {...data} searchParams={searchParams} locale={locale} />;
+    case "blocks.template-portfolio":
+      return (
+        <TemplatePortfolio
+          {...data}
+          searchParams={searchParams}
+          locale={locale}
+        />
+      );
     case "blocks.template-service":
       return <TemplateServices {...data} />;
     case "blocks.template-testimonial":
       return <TemplateTestimonial {...data} />;
     case "blocks.template-call-to-action":
       return <TemplateCTA {...data} />;
-    case 'blocks.template-header-section':
+    case "blocks.template-header-section":
       return <TemplateHeaderSection {...data} />;
-      case 'blocks.template-step-card':
-        return<TemplateStepCard {...data}/>
+    case "blocks.template-step-card":
+      return <TemplateStepCard {...data} />;
+    case "blocks.template-package":
+      return <TemplatePackage {...data} />;
 
     default:
       return <ErrorComponent message={`Unknown component: ${__component}`} />;

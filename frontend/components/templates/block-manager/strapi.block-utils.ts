@@ -26,8 +26,10 @@ function getBlock(block: IStrapiBlocks) {
       return blockCTA(block);
     case "blocks.header-section":
       return blockHeaderSection(block);
-      case "blocks.step-card":
-        return blockStepCard(block);
+    case "blocks.step-card":
+      return blockStepCard(block);
+    case "blocks.package":
+      return blockPackage(block);
     default:
       return null;
   }
@@ -140,20 +142,19 @@ function blockFeatureHighlight(
   } as IExtractBlock<"blocks.template-feature-highlight">;
 }
 
-function blockPortfolio(block: IExtractStrapiBlock<'blocks.portfolio'>) {
+function blockPortfolio(block: IExtractStrapiBlock<"blocks.portfolio">) {
   const { isHide, variant, sectionTitle } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-portfolio',
+    __component: "blocks.template-portfolio",
     data: {
       variant,
-      sectionTitle
-    }
-  } as IExtractBlock<'blocks.template-portfolio'>;
+      sectionTitle,
+    },
+  } as IExtractBlock<"blocks.template-portfolio">;
 }
-
 
 function blockTestimonial(block: IExtractStrapiBlock<"blocks.testimonial">) {
   const { isHide, title, subtitle, people } = block;
@@ -176,21 +177,22 @@ function blockTestimonial(block: IExtractStrapiBlock<"blocks.testimonial">) {
   } as IExtractBlock<"blocks.template-testimonial">;
 }
 
-
-function blockHeaderSection(block: IExtractStrapiBlock<'blocks.header-section'>) {
+function blockHeaderSection(
+  block: IExtractStrapiBlock<"blocks.header-section">,
+) {
   const { isHide, tagline, title, description, image } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-header-section',
+    __component: "blocks.template-header-section",
     data: {
       tagline,
       title,
       description,
-      image: getStrapiMedia(image)
-    }
-  } as IExtractBlock<'blocks.template-header-section'>;
+      image: getStrapiMedia(image),
+    },
+  } as IExtractBlock<"blocks.template-header-section">;
 }
 
 function blockCTA(block: IExtractStrapiBlock<"blocks.call-to-action">) {
@@ -211,18 +213,31 @@ function blockCTA(block: IExtractStrapiBlock<"blocks.call-to-action">) {
     },
   } as IExtractBlock<"blocks.template-call-to-action">;
 }
-function blockStepCard(block: IExtractStrapiBlock<'blocks.step-card'>) {
+function blockStepCard(block: IExtractStrapiBlock<"blocks.step-card">) {
   const { isHide, sectionTitle, bgColor, variant, items } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-step-card',
+    __component: "blocks.template-step-card",
     data: {
       bgColor,
       variant,
       sectionTitle,
-      data: items.map(x => ({ title: x.title, description: x.description }))
-    }
-  } as IExtractBlock<'blocks.template-step-card'>;
+      data: items.map((x) => ({ title: x.title, description: x.description })),
+    },
+  } as IExtractBlock<"blocks.template-step-card">;
+}
+function blockPackage(block: IExtractStrapiBlock<"blocks.package">) {
+  const { isHide, sectionTitle, packageItems} = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: "blocks.template-package",
+    data: {
+      sectionTitle,
+     packageItems,
+    },
+  } as IExtractBlock<"blocks.template-package">;
 }

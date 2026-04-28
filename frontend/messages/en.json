@@ -11,6 +11,9 @@
     "portfolio": {
       "btn-detail": "View Detail →",
       "btn-more": "View More"
+    },
+    "package": {
+      "recommended": "Recommended"
     }
   },
   "navigation": {
@@ -41,7 +44,6 @@
         "title": "Free consultation includes:",
         "description": "30-minute call or in-person meeting. We'll assess your needs and recommend the right approach. No obligation, no hard sell."
       },
-      
       "form": {
         "full-name": "Full Name",
         "full-name-placeholder": "Enter your fullname",
