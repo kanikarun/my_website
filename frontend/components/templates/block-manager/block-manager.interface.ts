@@ -10,6 +10,7 @@ import { TemplateTestimonialProps } from "../testimonial";
 import { TemplateCTAProps } from "../cta";
 import { TemplateHeaderSectionProps } from "../header-section";
 import { TemplateStepCardProps } from "../step-card";
+import { TemplatePackageProps } from "../package";
 
 export interface BlockOption {
   page?: string;
@@ -36,8 +37,9 @@ export type BlockComponent =
   | "blocks.template-portfolio"
   | "blocks.template-testimonial"
   | "blocks.template-call-to-action"
-  | "blocks.template-header-section" 
-  | "blocks.template-step-card";
+  | "blocks.template-header-section"
+  | "blocks.template-step-card"
+  | "blocks.template-package";
 
 export type BlockComponentProps =
   | Block<"blocks.carousel", CarouselProps>
@@ -49,4 +51,5 @@ export type BlockComponentProps =
   | Block<"blocks.template-testimonial", TemplateTestimonialProps>
   | Block<"blocks.template-call-to-action", TemplateCTAProps>
   | Block<"blocks.template-header-section", TemplateHeaderSectionProps>
-  | Block<"blocks.template-step-card", TemplateStepCardProps>;
+  | Block<"blocks.template-step-card", TemplateStepCardProps>
+  | Block<"blocks.template-package", TemplatePackageProps>;
