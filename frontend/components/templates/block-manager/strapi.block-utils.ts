@@ -26,6 +26,8 @@ function getBlock(block: IStrapiBlocks) {
       return blockCTA(block);
     case "blocks.header-section":
       return blockHeaderSection(block);
+      case "blocks.step-card":
+        return blockStepCard(block);
     default:
       return null;
   }
@@ -208,4 +210,19 @@ function blockCTA(block: IExtractStrapiBlock<"blocks.call-to-action">) {
       link,
     },
   } as IExtractBlock<"blocks.template-call-to-action">;
+}
+function blockStepCard(block: IExtractStrapiBlock<'blocks.step-card'>) {
+  const { isHide, sectionTitle, bgColor, variant, items } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: 'blocks.template-step-card',
+    data: {
+      bgColor,
+      variant,
+      sectionTitle,
+      data: items.map(x => ({ title: x.title, description: x.description }))
+    }
+  } as IExtractBlock<'blocks.template-step-card'>;
 }
