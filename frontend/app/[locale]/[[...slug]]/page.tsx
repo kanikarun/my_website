@@ -8,7 +8,7 @@ import { getMetadata } from '@/utils/next-metadata';
 
 interface PageProps {
   params: Promise<{ locale: Locale; slug: string[] }>;
-  searchParams: Promise<never>;
+  searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -22,9 +22,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page(props: PageProps) {
   const { slug, locale } = await props.params;
+  const searchParams = await props.searchParams;
 
   const page = await getPage(slug?.[0] || 'home', locale);
   if (!page) return notFound();
 
-  return <BlockManager blocks={getBlocks(page.block)} locale={locale} />;
+  return <BlockManager blocks={getBlocks(page.block)} locale={locale} searchParams={searchParams} />;
 }
