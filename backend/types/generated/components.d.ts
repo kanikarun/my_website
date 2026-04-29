@@ -13,21 +13,6 @@ export interface BaseButton extends Schema.Component {
   };
 }
 
-export interface BaseClientItem extends Schema.Component {
-  collectionName: 'components_base_client_items';
-  info: {
-    description: '';
-    displayName: 'client-item';
-    icon: 'chartBubble';
-  };
-  attributes: {
-    image_dark: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    image_light: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    link: Attribute.String;
-    name: Attribute.String;
-  };
-}
-
 export interface BaseFaqItem extends Schema.Component {
   collectionName: 'components_base_faq_items';
   info: {
@@ -306,12 +291,14 @@ export interface BlocksCarousel extends Schema.Component {
 export interface BlocksClients extends Schema.Component {
   collectionName: 'components_blocks_clients';
   info: {
+    description: '';
     displayName: 'clients';
     icon: 'user';
   };
   attributes: {
-    client_items: Attribute.Component<'base.client-item', true>;
-    client_label: Attribute.String;
+    isHide: Attribute.Boolean;
+    sectionTitle: Attribute.Component<'shared.section-title'>;
+    type: Attribute.Enumeration<['client', 'partner']>;
   };
 }
 
@@ -609,7 +596,6 @@ declare module '@strapi/types' {
   export module Shared {
     export interface Components {
       'base.button': BaseButton;
-      'base.client-item': BaseClientItem;
       'base.faq-item': BaseFaqItem;
       'base.feature': BaseFeature;
       'base.feature-card-item': BaseFeatureCardItem;
