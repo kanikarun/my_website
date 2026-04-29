@@ -17,7 +17,7 @@
       "default": false,
       "required": false
     },
-    "items": {
+    "packageItems": {
       "type": "component",
       "repeatable": true,
       "component": "base.package-item"

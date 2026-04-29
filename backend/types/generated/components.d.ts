@@ -411,7 +411,7 @@ export interface BlocksPackage extends Schema.Component {
   };
   attributes: {
     isHide: Attribute.Boolean & Attribute.DefaultTo<false>;
-    items: Attribute.Component<'base.package-item', true>;
+    packageItems: Attribute.Component<'base.package-item', true>;
     sectionTitle: Attribute.Component<'shared.section-title'>;
   };
 }
