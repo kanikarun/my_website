@@ -22,11 +22,11 @@ export const TemplateFaq = ({ sectionTitle, data }: TemplateFaqProps) => {
                 value={`item-${i}`}
                 className="bg-card dark:bg-navy-blue/50 border px-4 rounded-md"
               >
-                <AccordionTrigger className="text-base sm:text-lg font-semibold hover:no-underline hover:cursor-pointer">
+                <AccordionTrigger className="text-base  sm:text-lg font-semibold hover:no-underline hover:cursor-pointer">
                   {x.question}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <div className="prose prose-base sm:prose-lg" dangerouslySetInnerHTML={{ __html: x.answer }} />
+                  <div className="prose dark:text-white/50 prose-base sm:prose-lg" dangerouslySetInnerHTML={{ __html: x.answer }} />
                 </AccordionContent>
               </AccordionItem>
             );
