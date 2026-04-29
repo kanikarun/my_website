@@ -493,12 +493,18 @@ export interface ApiInsightCategoryInsightCategory
   extends Schema.CollectionType {
   collectionName: 'insight_categories';
   info: {
+    description: '';
     displayName: 'Insight Category';
     pluralName: 'insight-categories';
     singularName: 'insight-category';
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
     createdAt: Attribute.DateTime;
@@ -508,10 +514,31 @@ export interface ApiInsightCategoryInsightCategory
       'admin::user'
     > &
       Attribute.Private;
-    name: Attribute.String;
-    ordering: Attribute.Integer;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToMany',
+      'api::insight-category.insight-category'
+    >;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ordering: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.String;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::insight-category.insight-category',
@@ -533,6 +560,11 @@ export interface ApiInsightInsight extends Schema.CollectionType {
   options: {
     draftAndPublish: true;
   };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
   attributes: {
     content: Attribute.RichText &
       Attribute.CustomField<
@@ -549,16 +581,42 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     insight_categories: Attribute.Relation<
       'api::insight.insight',
       'oneToMany',
       'api::insight-category.insight-category'
     >;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight.insight'
+    >;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.String;
-    title: Attribute.String;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::insight.insight',
@@ -566,7 +624,12 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    views: Attribute.Integer;
+    views: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
