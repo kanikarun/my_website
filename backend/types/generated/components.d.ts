@@ -298,7 +298,7 @@ export interface BlocksClients extends Schema.Component {
   attributes: {
     isHide: Attribute.Boolean;
     sectionTitle: Attribute.Component<'shared.section-title'>;
-    type: Attribute.Enumeration<['cient', 'partner']>;
+    type: Attribute.Enumeration<['client', 'partner']>;
   };
 }
 
