@@ -9,7 +9,10 @@ type BlockComponent =
   | "blocks.portfolio"
   | "blocks.testimonial"
   | "blocks.call-to-action"
-  | 'blocks.header-section'
+  | "blocks.header-section"
+  | "blocks.step-card"
+  | "blocks.package"
+  | "blocks.faq";
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
   __component: Comp;
@@ -28,9 +31,11 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.feature-highlight", IBlockFeatureHighlight>
   | IStrapiBlock<"blocks.portfolio", IBlockPortfolio>
   | IStrapiBlock<"blocks.testimonial", IBlockTestimonial>
-  | IStrapiBlock<'blocks.call-to-action', IBlockCTA>
-  | IStrapiBlock<'blocks.header-section', IBlockHeaderSection>;
-  
+  | IStrapiBlock<"blocks.call-to-action", IBlockCTA>
+  | IStrapiBlock<"blocks.header-section", IBlockHeaderSection>
+  | IStrapiBlock<"blocks.step-card", IBlockStepCard>
+  | IStrapiBlock<"blocks.package", IBlockPackage>
+  | IStrapiBlock<"blocks.faq", IBlockFaq>;
 
 // ------------------------------
 // BLOCK
@@ -54,7 +59,6 @@ interface IBlockClient {
   type?: "Company" | "Individual";
   isHide: boolean;
 }
-
 
 interface IBlockFeatureCard {
   sectionTitle?: {
@@ -106,7 +110,7 @@ interface IBlockPortfolio {
 }
 
 interface IBlockCTA {
-  variant: 'OneWorld' | 'Odoo';
+  variant: "OneWorld" | "Odoo";
   title: string;
   subtitle?: string;
   image: Image;
@@ -140,11 +144,40 @@ interface IBlockTestimonial {
   isHide: boolean;
 }
 
-
 interface IBlockHeaderSection {
   tagline?: string;
   title: string;
   description?: string;
   image: Image;
   isHide: boolean;
+}
+
+interface IBlockStepCard {
+  sectionTitle: ISharedSectionTitle;
+  bgColor: "Gray" | "White";
+  variant: "Two Column" | "Three Column" | "Four Column" | "Five Column";
+  items: Array<{ title: string; description: string }>;
+  isHide?: boolean;
+}
+
+interface IBlockPackage {
+  sectionTitle?: ISharedSectionTitle;
+  packageItems: {
+    tagline?: string;
+    title: string;
+    description: string;
+    btnText?: string;
+    btnLink?: string;
+    isRecommend?: boolean;
+  }[];
+  isHide: boolean;
+}
+
+interface IBlockFaq {
+  sectionTitle: ISharedSectionTitle;
+  items: Array<{
+    question: string;
+    answer: string;
+  }>;
+  isHide?: boolean;
 }

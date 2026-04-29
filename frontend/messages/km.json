@@ -11,6 +11,9 @@
     "portfolio": {
       "btn-detail": "មើលលម្អិត →",
       "btn-more": "មើលបន្ថែម"
+    },
+    "package": {
+      "recommended": "ណែនាំ"
     }
   },
   "navigation": {
