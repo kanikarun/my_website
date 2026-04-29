@@ -2,17 +2,25 @@
   "collectionName": "components_blocks_clients",
   "info": {
     "displayName": "clients",
-    "icon": "user"
+    "icon": "user",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "client_label": {
-      "type": "string"
+    "isHide": {
+      "type": "boolean"
     },
-    "client_items": {
+    "sectionTitle": {
       "type": "component",
-      "repeatable": true,
-      "component": "base.client-item"
+      "repeatable": false,
+      "component": "shared.section-title"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "cient",
+        "partner"
+      ]
     }
   }
 }
