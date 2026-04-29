@@ -573,7 +573,12 @@ export interface ApiInsightInsight extends Schema.CollectionType {
           output: 'HTML';
           preset: 'rich';
         }
-      >;
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::insight.insight',
