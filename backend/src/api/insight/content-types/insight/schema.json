@@ -4,7 +4,8 @@
   "info": {
     "singularName": "insight",
     "pluralName": "insights",
-    "displayName": "Insight"
+    "displayName": "Insight",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -26,14 +27,26 @@
       "customField": "plugin::ckeditor.CKEditor"
     },
     "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false
+      ]
+    },
+    "views": {
+      "type": "integer"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "insight_categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::insight-category.insight-category"
     }
   }
 }

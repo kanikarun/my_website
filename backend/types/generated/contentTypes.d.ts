@@ -489,9 +489,43 @@ export interface ApiConfigConfig extends Schema.SingleType {
   };
 }
 
+export interface ApiInsightCategoryInsightCategory
+  extends Schema.CollectionType {
+  collectionName: 'insight_categories';
+  info: {
+    displayName: 'Insight Category';
+    pluralName: 'insight-categories';
+    singularName: 'insight-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    name: Attribute.String;
+    ordering: Attribute.Integer;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.String;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInsightInsight extends Schema.CollectionType {
   collectionName: 'insights';
   info: {
+    description: '';
     displayName: 'Insight';
     pluralName: 'insights';
     singularName: 'insight';
@@ -517,7 +551,13 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       Attribute.Private;
     description: Attribute.Text;
     image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    insight_categories: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight-category.insight-category'
+    >;
     publishedAt: Attribute.DateTime;
+    slug: Attribute.String;
     title: Attribute.String;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
@@ -526,6 +566,7 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    views: Attribute.Integer;
   };
 }
 
@@ -1276,6 +1317,7 @@ declare module '@strapi/types' {
       'admin::user': AdminUser;
       'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
+      'api::insight-category.insight-category': ApiInsightCategoryInsightCategory;
       'api::insight.insight': ApiInsightInsight;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
