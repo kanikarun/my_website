@@ -12,6 +12,7 @@ import { TemplateHeaderSectionProps } from "../header-section";
 import { TemplateStepCardProps } from "../step-card";
 import { TemplatePackageProps } from "../package";
 import { TemplateFaqProps } from "../faq";
+import { TemplateTeamProps } from "../team";
 
 export interface BlockOption {
   page?: string;
@@ -41,7 +42,8 @@ export type BlockComponent =
   | "blocks.template-header-section"
   | "blocks.template-step-card"
   | "blocks.template-package"
-  | "blocks.template-faq";
+  | "blocks.template-faq"
+  | "blocks.template-team";
 
 export type BlockComponentProps =
   | Block<"blocks.carousel", CarouselProps>
@@ -55,4 +57,5 @@ export type BlockComponentProps =
   | Block<"blocks.template-header-section", TemplateHeaderSectionProps>
   | Block<"blocks.template-step-card", TemplateStepCardProps>
   | Block<"blocks.template-package", TemplatePackageProps>
-  | Block<"blocks.template-faq", TemplateFaqProps>;
+  | Block<"blocks.template-faq", TemplateFaqProps>
+  | Block<"blocks.template-team", TemplateTeamProps>;
