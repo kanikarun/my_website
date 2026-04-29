@@ -13,6 +13,7 @@ type BlockComponent =
   | "blocks.step-card"
   | "blocks.package"
   | "blocks.faq"
+  | "blocks.team"
   | "blocks.insight";
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
@@ -37,6 +38,7 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.step-card", IBlockStepCard>
   | IStrapiBlock<"blocks.package", IBlockPackage>
   | IStrapiBlock<"blocks.faq", IBlockFaq>
+  | IStrapiBlock<"blocks.team", IBlockTeam>
   | IStrapiBlock<"blocks.insight", IBlockInsight>;
 
 // ------------------------------
@@ -184,6 +186,10 @@ interface IBlockFaq {
   isHide?: boolean;
 }
 
+interface IBlockTeam {
+  sectionTitle: ISharedSectionTitle;
+  isHide?: boolean;
+}
 interface IBlockInsight{
   sectionTitle?: ISharedSectionTitle;
   isHide?: boolean;
