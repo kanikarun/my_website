@@ -13,7 +13,6 @@ export async function getInsights(opt: I.GetInsightsRequest): Promise<I.GetInsig
 
   const fields = ['title', 'slug', 'createdAt', 'description', 'locale'];
   const { data, meta } = await fetchAPI<I.InsightResponse>('/insights', {
-    locale: 'en',
     filters: { ...filterByNotId },
     pagination: { page: +(page || 1), pageSize: +(pageSize || 12) },
     sort: ['id:desc'],
@@ -44,22 +43,17 @@ export async function getInsights(opt: I.GetInsightsRequest): Promise<I.GetInsig
 
 export async function getInsightDetail(slug: string, locale: Locale): Promise<I.IInsight | null> {
   const res = await fetchAPI<I.InsightResponse>('/insights', {
-    locale: 'en',
+    locale,
     filters: { slug: { $eq: slug } },
-    populate: {
-      image: STRAPI_IMAGE_FIELDS,
-      insight_categories: { fields: ['name', 'slug'] },
-      localizations: { fields: ['*'], populate: { insight_categories: { fields: ['name', 'slug'] } } }
-    },
+    populate: '*',
     pagination: { page: 1, pageSize: 1 }
   });
 
-  if (!res.data.length) return null;
+  if (locale !== 'en' && !res.data.length) {
+    return getInsightDetail(slug, 'en');
+  }
 
-  const { attributes: attr } = res.data[0];
-  const localize = getAttributes(attr.localizations, locale);
-
-  return { ...attr, ...localize?.attributes };
+  return res.data.length ? res.data[0].attributes : null;
 }
 
 export async function updateInsightViewCount(slug: string) {

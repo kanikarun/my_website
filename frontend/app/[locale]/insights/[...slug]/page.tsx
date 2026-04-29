@@ -8,7 +8,7 @@ import { InsightsDetail } from "@/modules/insights/insight-detail";
 import { getStrapiMedia, revalidateCache } from "@/strapi";
 
 interface PageProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: Locale; slug: string[] }>;
   searchParams: Promise<never>;
 }
 
@@ -16,7 +16,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const insight = await getInsightDetail(slug, locale);
+  const insight = await getInsightDetail(slug[0], locale);
 
   if (!insight) {
     return {
@@ -76,7 +76,7 @@ export default async function Page({ params, searchParams }: PageProps) {
   const { locale, slug } = await params;
   revalidateCache(await searchParams);
 
-  const insight = await getInsightDetail(slug, locale);
+  const insight = await getInsightDetail(slug[0], locale);
   if (!insight) return notFound();
 
   return (
@@ -85,7 +85,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       content={insight.content}
       image={getStrapiMedia(insight.image)}
       createdAt={insight.createdAt}
-      slug={slug}
+      slug={slug[0]}
     />
   );
 }
