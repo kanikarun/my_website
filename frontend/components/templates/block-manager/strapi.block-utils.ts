@@ -30,8 +30,10 @@ function getBlock(block: IStrapiBlocks) {
       return blockStepCard(block);
     case "blocks.package":
       return blockPackage(block);
-      case "blocks.faq":
-        return blockFaq(block);
+    case "blocks.faq":
+      return blockFaq(block);
+    case "blocks.insight":
+      return blockInsight(block);
     default:
       return null;
   }
@@ -259,4 +261,14 @@ function blockFaq(block: IExtractStrapiBlock<'blocks.faq'>) {
       }))
     }
   } as IExtractBlock<'blocks.template-faq'>;
+}
+
+function blockInsight(block: IExtractStrapiBlock<'blocks.insight'>) {
+  const { isHide, sectionTitle } = block;
+
+  if (isHide) return null;
+  return {
+    __component: 'blocks.template-insight',
+    data: { sectionTitle }
+     } as IExtractBlock<'blocks.template-insight'>;
 }

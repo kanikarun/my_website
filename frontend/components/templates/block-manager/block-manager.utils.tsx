@@ -15,6 +15,7 @@ import { TemplateHeaderSection } from "../header-section";
 import { TemplateStepCard } from "../step-card";
 import { TemplatePackage } from "../package";
 import { TemplateFaq } from "../faq";
+import { TemplateInsight } from "../insight";
 
 interface Props {
   locale: Locale;
@@ -91,6 +92,8 @@ const BlockComponent: React.FC<BlockComponentProps> = ({
       return <TemplatePackage {...data} />;
       case "blocks.template-faq":
         return <TemplateFaq {...data} />;
+      case "blocks.template-insight":
+        return <TemplateInsight {...data} />;
 
     default:
       return <ErrorComponent message={`Unknown component: ${__component}`} />;

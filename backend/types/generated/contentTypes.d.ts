@@ -489,15 +489,81 @@ export interface ApiConfigConfig extends Schema.SingleType {
   };
 }
 
+export interface ApiInsightCategoryInsightCategory
+  extends Schema.CollectionType {
+  collectionName: 'insight_categories';
+  info: {
+    description: '';
+    displayName: 'Insight Category';
+    pluralName: 'insight-categories';
+    singularName: 'insight-category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToMany',
+      'api::insight-category.insight-category'
+    >;
+    name: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    ordering: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Attribute.DateTime;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::insight-category.insight-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInsightInsight extends Schema.CollectionType {
   collectionName: 'insights';
   info: {
+    description: '';
     displayName: 'Insight';
     pluralName: 'insights';
     singularName: 'insight';
   };
   options: {
     draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
   };
   attributes: {
     content: Attribute.RichText &
@@ -515,10 +581,42 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
-    description: Attribute.Text;
-    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    description: Attribute.Text &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    insight_categories: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight-category.insight-category'
+    >;
+    locale: Attribute.String;
+    localizations: Attribute.Relation<
+      'api::insight.insight',
+      'oneToMany',
+      'api::insight.insight'
+    >;
     publishedAt: Attribute.DateTime;
-    title: Attribute.String;
+    slug: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
       'api::insight.insight',
@@ -526,6 +624,12 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'admin::user'
     > &
       Attribute.Private;
+    views: Attribute.Integer &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
   };
 }
 
@@ -1276,6 +1380,7 @@ declare module '@strapi/types' {
       'admin::user': AdminUser;
       'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
+      'api::insight-category.insight-category': ApiInsightCategoryInsightCategory;
       'api::insight.insight': ApiInsightInsight;
       'api::navigation.navigation': ApiNavigationNavigation;
       'api::page.page': ApiPagePage;
