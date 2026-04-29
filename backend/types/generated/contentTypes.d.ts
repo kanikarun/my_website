@@ -362,6 +362,44 @@ export interface AdminUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiClientClient extends Schema.CollectionType {
+  collectionName: 'clients';
+  info: {
+    description: '';
+    displayName: 'Client';
+    pluralName: 'clients';
+    singularName: 'client';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    image: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    imageDark: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    link: Attribute.String;
+    moreHeight: Attribute.Boolean;
+    moreWidth: Attribute.Boolean;
+    name: Attribute.String;
+    ordering: Attribute.Integer;
+    publishedAt: Attribute.DateTime;
+    type: Attribute.Enumeration<['client', 'partner']>;
+    updatedAt: Attribute.DateTime;
+    updatedBy: Attribute.Relation<
+      'api::client.client',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiConfigConfig extends Schema.SingleType {
   collectionName: 'configs';
   info: {
@@ -1236,6 +1274,7 @@ declare module '@strapi/types' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::client.client': ApiClientClient;
       'api::config.config': ApiConfigConfig;
       'api::insight.insight': ApiInsightInsight;
       'api::navigation.navigation': ApiNavigationNavigation;
