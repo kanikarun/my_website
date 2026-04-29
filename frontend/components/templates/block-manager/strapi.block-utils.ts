@@ -30,8 +30,12 @@ function getBlock(block: IStrapiBlocks) {
       return blockStepCard(block);
     case "blocks.package":
       return blockPackage(block);
-      case "blocks.faq":
-        return blockFaq(block);
+    case "blocks.faq":
+      return blockFaq(block);
+    case "blocks.team":
+      return blockTeam(block);
+    case "blocks.insight":
+      return blockInsight(block);
     default:
       return null;
   }
@@ -231,7 +235,7 @@ function blockStepCard(block: IExtractStrapiBlock<"blocks.step-card">) {
   } as IExtractBlock<"blocks.template-step-card">;
 }
 function blockPackage(block: IExtractStrapiBlock<"blocks.package">) {
-  const { isHide, sectionTitle, packageItems} = block;
+  const { isHide, sectionTitle, packageItems } = block;
 
   if (isHide) return null;
 
@@ -239,24 +243,45 @@ function blockPackage(block: IExtractStrapiBlock<"blocks.package">) {
     __component: "blocks.template-package",
     data: {
       sectionTitle,
-     packageItems,
+      packageItems,
     },
   } as IExtractBlock<"blocks.template-package">;
 }
 
-function blockFaq(block: IExtractStrapiBlock<'blocks.faq'>) {
+function blockFaq(block: IExtractStrapiBlock<"blocks.faq">) {
   const { isHide, sectionTitle, items } = block;
 
   if (isHide) return null;
 
   return {
-    __component: 'blocks.template-faq',
+    __component: "blocks.template-faq",
     data: {
       sectionTitle,
-      data: items.map(x => ({
+      data: items.map((x) => ({
         question: x.question,
-        answer: x.answer
-      }))
-    }
-  } as IExtractBlock<'blocks.template-faq'>;
+        answer: x.answer,
+      })),
+    },
+  } as IExtractBlock<"blocks.template-faq">;
+}
+
+function blockTeam(block: IExtractStrapiBlock<'blocks.team'>) {
+  const { isHide, sectionTitle } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: 'blocks.template-team',
+    data: { sectionTitle }
+  } as IExtractBlock<'blocks.template-team'>;
+}
+
+function blockInsight(block: IExtractStrapiBlock<'blocks.insight'>) {
+  const { isHide, sectionTitle } = block;
+
+  if (isHide) return null;
+  return {
+    __component: 'blocks.template-insight',
+    data: { sectionTitle }
+     } as IExtractBlock<'blocks.template-insight'>;
 }

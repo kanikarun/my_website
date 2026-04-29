@@ -12,7 +12,9 @@ type BlockComponent =
   | "blocks.header-section"
   | "blocks.step-card"
   | "blocks.package"
-  | "blocks.faq";
+  | "blocks.faq"
+  | "blocks.team"
+  | "blocks.insight";
 
 type IStrapiBlock<Comp extends BlockComponent, Props> = Props & {
   __component: Comp;
@@ -35,7 +37,9 @@ export type IStrapiBlocks =
   | IStrapiBlock<"blocks.header-section", IBlockHeaderSection>
   | IStrapiBlock<"blocks.step-card", IBlockStepCard>
   | IStrapiBlock<"blocks.package", IBlockPackage>
-  | IStrapiBlock<"blocks.faq", IBlockFaq>;
+  | IStrapiBlock<"blocks.faq", IBlockFaq>
+  | IStrapiBlock<"blocks.team", IBlockTeam>
+  | IStrapiBlock<"blocks.insight", IBlockInsight>;
 
 // ------------------------------
 // BLOCK
@@ -179,5 +183,14 @@ interface IBlockFaq {
     question: string;
     answer: string;
   }>;
+  isHide?: boolean;
+}
+
+interface IBlockTeam {
+  sectionTitle: ISharedSectionTitle;
+  isHide?: boolean;
+}
+interface IBlockInsight{
+  sectionTitle?: ISharedSectionTitle;
   isHide?: boolean;
 }
