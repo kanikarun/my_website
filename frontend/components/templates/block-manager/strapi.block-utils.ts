@@ -34,6 +34,8 @@ function getBlock(block: IStrapiBlocks) {
       return blockFaq(block);
     case "blocks.team":
       return blockTeam(block);
+    case "blocks.insight":
+      return blockInsight(block);
     default:
       return null;
   }
@@ -272,4 +274,14 @@ function blockTeam(block: IExtractStrapiBlock<'blocks.team'>) {
     __component: 'blocks.template-team',
     data: { sectionTitle }
   } as IExtractBlock<'blocks.template-team'>;
+}
+
+function blockInsight(block: IExtractStrapiBlock<'blocks.insight'>) {
+  const { isHide, sectionTitle } = block;
+
+  if (isHide) return null;
+  return {
+    __component: 'blocks.template-insight',
+    data: { sectionTitle }
+     } as IExtractBlock<'blocks.template-insight'>;
 }
