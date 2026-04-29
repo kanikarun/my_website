@@ -13,6 +13,7 @@ export async function getInsights(opt: I.GetInsightsRequest): Promise<I.GetInsig
 
   const fields = ['title', 'slug', 'createdAt', 'description', 'locale'];
   const { data, meta } = await fetchAPI<I.InsightResponse>('/insights', {
+    locale: 'en',
     filters: { ...filterByNotId },
     pagination: { page: +(page || 1), pageSize: +(pageSize || 12) },
     sort: ['id:desc'],
