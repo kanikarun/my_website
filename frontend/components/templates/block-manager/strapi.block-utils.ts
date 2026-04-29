@@ -30,6 +30,8 @@ function getBlock(block: IStrapiBlocks) {
       return blockStepCard(block);
     case "blocks.package":
       return blockPackage(block);
+      case "blocks.faq":
+        return blockFaq(block);
     default:
       return null;
   }
@@ -240,4 +242,21 @@ function blockPackage(block: IExtractStrapiBlock<"blocks.package">) {
      packageItems,
     },
   } as IExtractBlock<"blocks.template-package">;
+}
+
+function blockFaq(block: IExtractStrapiBlock<'blocks.faq'>) {
+  const { isHide, sectionTitle, items } = block;
+
+  if (isHide) return null;
+
+  return {
+    __component: 'blocks.template-faq',
+    data: {
+      sectionTitle,
+      data: items.map(x => ({
+        question: x.question,
+        answer: x.answer
+      }))
+    }
+  } as IExtractBlock<'blocks.template-faq'>;
 }

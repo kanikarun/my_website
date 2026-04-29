@@ -6,6 +6,7 @@ import { ROUTES } from '@/config/routes';
 import { siteConfig } from '@/config/site-config';
 import { getPortfolioDetail } from '@/modules/portfolio/api/portfolio.api';
 import { PortfolioDetail } from '@/modules/portfolio/portfolio-detail';
+import { revalidateCache } from '@/strapi';
 
 interface PageProps {
   params: Promise<{ locale: Locale; slug: string[] }>;
@@ -63,8 +64,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function Page({ params, searchParams }: PageProps) {
   const { locale, slug } = await params;
+  revalidateCache(await searchParams);
 
   const data = await getPortfolioDetail(+slug[0], locale);
   if (!data) return notFound();
