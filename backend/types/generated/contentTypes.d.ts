@@ -400,13 +400,13 @@ export interface ApiClientClient extends Schema.CollectionType {
   };
 }
 
-export interface ApiConfigConfig extends Schema.SingleType {
-  collectionName: 'configs';
+export interface ApiFooterFooter extends Schema.SingleType {
+  collectionName: 'footers';
   info: {
     description: '';
     displayName: 'Footer';
-    pluralName: 'configs';
-    singularName: 'config';
+    pluralName: 'footers';
+    singularName: 'footer';
   };
   options: {
     draftAndPublish: true;
@@ -425,18 +425,18 @@ export interface ApiConfigConfig extends Schema.SingleType {
       }>;
     createdAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
-      'api::config.config',
+      'api::footer.footer',
       'oneToOne',
       'admin::user'
     > &
       Attribute.Private;
-    facebook_url: Attribute.Text &
+    facebook_url: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
         };
       }>;
-    github_url: Attribute.Text &
+    github_url: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -454,7 +454,7 @@ export interface ApiConfigConfig extends Schema.SingleType {
           localized: true;
         };
       }>;
-    linkedin_url: Attribute.Text &
+    linkedin_url: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
           localized: true;
@@ -462,9 +462,9 @@ export interface ApiConfigConfig extends Schema.SingleType {
       }>;
     locale: Attribute.String;
     localizations: Attribute.Relation<
-      'api::config.config',
+      'api::footer.footer',
       'oneToMany',
-      'api::config.config'
+      'api::footer.footer'
     >;
     products: Attribute.Component<'shared.menu-item', true> &
       Attribute.SetPluginOptions<{
@@ -473,6 +473,12 @@ export interface ApiConfigConfig extends Schema.SingleType {
         };
       }>;
     publishedAt: Attribute.DateTime;
+    resources: Attribute.Component<'shared.menu-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slogan: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
@@ -481,7 +487,7 @@ export interface ApiConfigConfig extends Schema.SingleType {
       }>;
     updatedAt: Attribute.DateTime;
     updatedBy: Attribute.Relation<
-      'api::config.config',
+      'api::footer.footer',
       'oneToOne',
       'admin::user'
     > &
@@ -1450,7 +1456,7 @@ declare module '@strapi/types' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::client.client': ApiClientClient;
-      'api::config.config': ApiConfigConfig;
+      'api::footer.footer': ApiFooterFooter;
       'api::insight-category.insight-category': ApiInsightCategoryInsightCategory;
       'api::insight.insight': ApiInsightInsight;
       'api::navigation.navigation': ApiNavigationNavigation;

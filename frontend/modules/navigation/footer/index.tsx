@@ -20,6 +20,7 @@ export const Footer: React.FC<{ locale: Locale }> = async ({ locale }) => {
     slogan,
     products,
     company,
+    resources,
     image,
     image_dark,
   } = config || {};
@@ -48,52 +49,17 @@ export const Footer: React.FC<{ locale: Locale }> = async ({ locale }) => {
                   />
                 </Link>
               </div>
-              <p className="mt-4 max-w-lg text-center text-black dark:text-slate-300 lg:text-start">
+              <p className="mt-8 max-w-lg text-center text-black dark:text-slate-300 lg:text-start">
                 {slogan}
               </p>
-            </div>
-          </div>
-
-          <div className="col-span-12 mt-10 lg:col-span-8 lg:mt-0">
-            <div className="mx-auto grid grid-cols-12 gap-y-10 md:gap-y-0">
-              {products && (
-                <ul className="col-span-12 space-y-2 px-3 text-center text-black dark:text-slate-300 md:col-span-6 md:space-y-4 lg:text-start">
-                  <p className="text-center font-bold text-primary-500 dark:text-white md:text-start">
-                    {t("services")}
-                  </p>
-                  {products.map((x) => (
-                    <li
-                      key={x.name}
-                      className="hover:underline  hover:text-primary-500 md:w-fit"
-                    >
-                      <Link href={x.url}>{x.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              {company && (
-                <ul className="col-span-12 space-y-2 px-3 text-center text-black dark:text-slate-300 md:col-span-3 md:space-y-4 lg:text-start">
-                  <p className="text-center font-bold text-primary-500 dark:text-white md:text-start">
-                    {t("company")}
-                  </p>
-                  {company.map((c) => (
-                    <li
-                      key={c.name}
-                      className="hover:underline  hover:text-primary-500 md:w-fit"
-                    >
-                      <Link href={c.url}>{c.name}</Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-              <ul className="col-span-12 px-3 text-center md:col-span-3 lg:text-start">
+              <div className="mt-4 text-center lg:text-start">
                 <p
-                  className="text-center font-bold text-primary-500 dark:text-white md:text-start"
+                  className="font-bold text-primary-500 dark:text-white"
                   hidden={!facebook_url && !linkedin_url && !github_url}
                 >
                   {t("follow-us")}
                 </p>
-                <div className="mt-4 flex justify-center space-x-6 md:justify-start">
+                <div className="mt-4 flex justify-center space-x-6 lg:justify-start">
                   {!!facebook_url && (
                     <Link href={facebook_url} rel="noreferrer" target="_blank">
                       <span className="sr-only">Facebook</span>
@@ -119,7 +85,57 @@ export const Footer: React.FC<{ locale: Locale }> = async ({ locale }) => {
                     </Link>
                   )}
                 </div>
-              </ul>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-span-12 mt-10 lg:col-span-8 lg:mt-0">
+            <div className="mx-auto grid grid-cols-12 gap-y-10 md:gap-y-0">
+              {products && (
+                <ul className="col-span-12 space-y-2 px-3 text-center text-black dark:text-slate-300 md:col-span-5 md:space-y-4 lg:text-start">
+                  <p className="text-center font-bold text-primary-500 dark:text-white md:text-start">
+                    {t("services")}
+                  </p>
+                  {products.map((x) => (
+                    <li
+                      key={x.name}
+                      className="hover:underline  hover:text-primary-500 md:w-fit"
+                    >
+                      <Link href={x.url}>{x.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {company && (
+                <ul className="col-span-12 space-y-2 px-3 text-center text-black dark:text-slate-300 md:col-span-4 md:space-y-4 lg:text-start">
+                  <p className="text-center font-bold text-primary-500 dark:text-white md:text-start">
+                    {t("company")}
+                  </p>
+                  {company.map((c) => (
+                    <li
+                      key={c.name}
+                      className="hover:underline  hover:text-primary-500 md:w-fit"
+                    >
+                      <Link href={c.url}>{c.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+              {resources && (
+                <ul className="col-span-12 space-y-2 px-3 text-center text-black dark:text-slate-300 md:col-span-3 md:space-y-4 lg:text-start">
+                  <p className="text-center font-bold text-primary-500 dark:text-white md:text-start">
+                    {t("resources")}
+                  </p>
+                  {resources.map((r) => (
+                    <li
+                      key={r.name}
+                      className="hover:underline  hover:text-primary-500 md:w-fit"
+                    >
+                      <Link href={r.url}>{r.name}</Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </div>
         </div>

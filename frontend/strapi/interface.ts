@@ -50,6 +50,7 @@ export interface IConfig {
   github_url: string;
   products: Array<{ name: string; url: string }>;
   company: Array<{ name: string; url: string }>;
+  resources: Array<{ name: string; url: string }>;
 }
 
 export interface IInsightCategory {
