@@ -473,6 +473,12 @@ export interface ApiConfigConfig extends Schema.SingleType {
         };
       }>;
     publishedAt: Attribute.DateTime;
+    resources: Attribute.Component<'shared.menu-item', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     slogan: Attribute.Text &
       Attribute.SetPluginOptions<{
         i18n: {
