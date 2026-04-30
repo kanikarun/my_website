@@ -1,11 +1,11 @@
 import { Props as SectionTitleProps, SectionTitle } from '@/components/molecules/section-title';
 
-import { TestimonialItemProps } from './interface';
+import { TestimonialProps } from './interface';
 import { TestimonialList } from './testimonial-list';
 
 export interface TemplateTestimonialProps {
   sectionTitle?: SectionTitleProps;
-  items: TestimonialItemProps[];
+  items: TestimonialProps[];
 }
 
 export const TemplateTestimonial = (props: TemplateTestimonialProps) => {

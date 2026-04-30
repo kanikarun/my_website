@@ -22,7 +22,7 @@ export type ContactFormInput = v.InferOutput<ReturnType<typeof schema>>;
 export function useContactForm() {
   const t = useTranslations('page.contact.form');
   return useForm<ContactFormInput>({
-    resolver: valibotResolver(schema(t)),
+    resolver: valibotResolver(schema(t as (key: string) => string)),
     defaultValues: {
       fullName: '',
       email: '',

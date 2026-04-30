@@ -9,10 +9,10 @@ import { NavigationBtn, NavigationProps } from '@/components/atoms/navigate-btn'
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 
-import { TestimonialItemProps } from './interface';
+import { TestimonialProps,  } from './interface';
 
 interface Props {
-  items: TestimonialItemProps[];
+  items: TestimonialProps[];
 }
 
 const navigator: NavigationProps['navigator'] = {
@@ -54,7 +54,7 @@ export const TestimonialList: React.FC<Props> = ({ items }) => {
   );
 };
 
-const TestimonialListItem = ({ name, position, image, content }: TestimonialItemProps) => {
+const TestimonialListItem = ({ name, position, image, content }: TestimonialProps) => {
   return (
     <Card className="overflow-visible relative h-full bg-white dark:bg-navy-blue/50">
       <CardContent className="flex flex-col items-center space-y-6 h-full relative">
