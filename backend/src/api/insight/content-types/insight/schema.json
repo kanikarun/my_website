@@ -69,14 +69,6 @@
         }
       }
     },
-    "slug": {
-      "type": "string",
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "insight_categories": {
       "type": "relation",
       "relation": "oneToMany",

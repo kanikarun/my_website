@@ -610,12 +610,6 @@ export interface ApiInsightInsight extends Schema.CollectionType {
       'api::insight.insight'
     >;
     publishedAt: Attribute.DateTime;
-    slug: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     title: Attribute.String &
       Attribute.SetPluginOptions<{
         i18n: {
