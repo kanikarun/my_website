@@ -41,16 +41,16 @@ export async function getInsights(opt: I.GetInsightsRequest): Promise<I.GetInsig
   return { data: result, meta };
 }
 
-export async function getInsightDetail(slug: string, locale: Locale): Promise<I.IInsight | null> {
+export async function getInsightDetailById(id: number, locale: Locale): Promise<I.IInsight | null> {
   const res = await fetchAPI<I.InsightResponse>('/insights', {
     locale,
-    filters: { slug: { $eq: slug } },
+    filters: { id: { $eq: id } },
     populate: '*',
     pagination: { page: 1, pageSize: 1 }
   });
 
   if (locale !== 'en' && !res.data.length) {
-    return getInsightDetail(slug, 'en');
+    return getInsightDetailById(id, 'en');
   }
 
   return res.data.length ? res.data[0].attributes : null;
@@ -65,6 +65,5 @@ export async function getInsightCategories(pagination: Pagination): Promise<I.In
     sort: ['id:desc'],
     fields: ['name', 'slug'],
     pagination
-    // Do not populate blogs, use getBlogs instead
   });
 }

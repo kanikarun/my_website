@@ -1,6 +1,6 @@
 import _slugify from 'slugify';
 
-const slugify = (name: string) => _slugify(name, { lower: true, remove: /[*+~.()'"!:@]/g, strict: true });
+const slugify = (name: string) => name ? _slugify(name, { lower: true, remove: /[*+~.()'"!:@]/g, strict: true }) : '';
 
 export const ROUTES = {
   HOME: '/',
@@ -8,7 +8,7 @@ export const ROUTES = {
   CONTACT: '/contact',
   SERVICE: '/services',
   INSIGHT: '/insights',
-  INSIGHT_DETAIL: (slug: string) => `/insights/${slug}`,
+  INSIGHT_DETAIL: (id: number,title:string) => `/insights/${id}/${slugify(title)}`,
   ODOO_ERP: 'odoo-erp',
   PORTFOLIO: '/portfolios',
   PORTFOLIO_DETAIL: (id: number, title: string) => `/portfolios/${id}/${slugify(title)}`

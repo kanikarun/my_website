@@ -3,18 +3,19 @@ import { notFound } from 'next/navigation';
 import { Locale } from 'next-intl';
 
 import { siteConfig } from '@/config/site-config';
-import { getInsightDetail } from '@/modules/insights/api/insight.api';
+import { getInsightDetailById } from '@/modules/insights/api/insight.api';
 import { InsightsDetail } from '@/modules/insights/insight-detail';
 import { getStrapiMedia, revalidateCache } from '@/strapi';
 
 interface PageProps {
-  params: Promise<{ locale: Locale; slug: string }>;
+  params: Promise<{ locale: Locale; slug: string[] }>;
   searchParams: Promise<never>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { locale, slug } = await params;
-  const insight = await getInsightDetail(slug, locale);
+  const id = Number(slug[0]);
+  const insight = await getInsightDetailById(id, locale);
 
   if (!insight) {
     return {
@@ -31,8 +32,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const { title, description, image } = insight;
-  const canonical = `${siteConfig.url}/insights/${slug}`;
+  const { title, description, image, slug: insightSlug } = insight;
+  const canonical = `${siteConfig.url}/insights/${id}/${insightSlug}`;
 
   return {
     title: title ? `${title} | ${siteConfig.name}` : siteConfig.title,
@@ -65,9 +66,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function Page({ params, searchParams }: PageProps) {
   const { locale, slug } = await params;
+  const id = Number(slug[0]);
   revalidateCache(await searchParams);
 
-  const insight = await getInsightDetail(slug, locale);
+  const insight = await getInsightDetailById(id, locale);
   if (!insight) return notFound();
 
   return (
@@ -76,7 +78,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       content={insight.content}
       image={getStrapiMedia(insight.image)}
       createdAt={insight.createdAt}
-      slug={slug}
+      slug={insight.slug}
     />
   );
 }
