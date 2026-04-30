@@ -639,7 +639,7 @@ export interface ApiInsightInsight extends Schema.CollectionType {
 }
 
 export interface ApiNavigationNavigation extends Schema.SingleType {
-  collectionName: 'headers';
+  collectionName: 'navigations';
   info: {
     description: '';
     displayName: 'Header';
