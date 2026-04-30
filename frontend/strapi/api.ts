@@ -81,7 +81,7 @@ export async function getConfig(locale: Locale = 'en'): Promise<IConfig | null> 
 
 async function fetchConfig(locale: Locale = 'en'): Promise<IConfig | null> {
   try {
-    const config = await fetchAPI<ConfigResponse>('/config', {
+    const config = await fetchAPI<ConfigResponse>('/footer', {
       locale: locale || 'en',
       populate: '*'
     });

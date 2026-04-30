@@ -1,9 +1,9 @@
 {
   "kind": "singleType",
-  "collectionName": "configs",
+  "collectionName": "footers",
   "info": {
-    "singularName": "config",
-    "pluralName": "configs",
+    "singularName": "footer",
+    "pluralName": "footers",
     "displayName": "Footer",
     "description": ""
   },
@@ -25,7 +25,7 @@
       }
     },
     "facebook_url": {
-      "type": "text",
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -33,7 +33,7 @@
       }
     },
     "linkedin_url": {
-      "type": "text",
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
@@ -41,7 +41,7 @@
       }
     },
     "github_url": {
-      "type": "text",
+      "type": "string",
       "pluginOptions": {
         "i18n": {
           "localized": true
