@@ -99,6 +99,16 @@
           "localized": true
         }
       }
+    },
+    "resources": {
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "shared.menu-item"
     }
   }
 }
