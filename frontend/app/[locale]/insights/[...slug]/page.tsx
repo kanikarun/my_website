@@ -32,8 +32,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
   }
 
-  const { title, description, image, slug: insightSlug } = insight;
-  const canonical = `${siteConfig.url}/insights/${id}/${insightSlug}`;
+  const { title, description, image } = insight;
+  const canonical = `${siteConfig.url}/insights/${id}`;
 
   return {
     title: title ? `${title} | ${siteConfig.name}` : siteConfig.title,
@@ -78,7 +78,7 @@ export default async function Page({ params, searchParams }: PageProps) {
       content={insight.content}
       image={getStrapiMedia(insight.image)}
       createdAt={insight.createdAt}
-      slug={insight.slug}
+      id={id}
     />
   );
 }

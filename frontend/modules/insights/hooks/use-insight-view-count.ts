@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { updateInsightViewCount } from '@/modules/insights/api/insight.api';
 
 interface Props {
-  slug: string;
+  id: number;
 }
 
-export const InsightViewCounter = ({ slug }: Props) => {
+export const InsightViewCounter = ({ id }: Props) => {
   useEffect(() => {
-    updateInsightViewCount(slug);
-  }, [slug]);
+    updateInsightViewCount(id);
+  }, [id]);
 
   return null;
 };

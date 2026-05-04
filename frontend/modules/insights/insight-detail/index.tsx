@@ -9,15 +9,15 @@ interface Props {
   image: string;
   content: string;
   createdAt: string;
-  slug: string;
+  id: number;
 }
 
-export const InsightsDetail: React.FC<Props> = ({ title, image, content, createdAt, slug }) => {
+export const InsightsDetail: React.FC<Props> = ({ title, image, content, createdAt, id }) => {
   const date = getLongDateFormat(createdAt);
 
   return (
     <div className="container max-w-4xl mx-auto py-16 space-y-6">
-      <InsightViewCounter slug={slug} />
+      <InsightViewCounter id={id} />
       <div className="space-y-3">
         <h1 className="text-3xl lg:text-4xl font-bold">{title}</h1>
         <div className="flex space-x-3 items-center text-foreground">

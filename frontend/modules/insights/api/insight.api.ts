@@ -74,8 +74,8 @@ export async function getInsightDetailById(
   return { ...attr, ...localize?.attributes };
 }
 
-export async function updateInsightViewCount(slug: string) {
-  await fetchAPI(`/insights/${slug}/views-count`, {}, { method: "POST" });
+export async function updateInsightViewCount(id: number) {
+  await fetchAPI(`/insights/${id}/views-count`, {}, { method: "POST" });
 }
 
 export async function getInsightCategories(
