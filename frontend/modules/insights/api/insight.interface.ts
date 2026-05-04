@@ -16,8 +16,7 @@ export interface GetInsightsResponse {
     title: string;
     description?: string;
     image: string;
-    slug: string;
-    insight_categories?: string[];
+    categories?: string[];
   }[];
 }
 
