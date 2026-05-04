@@ -1,7 +1,9 @@
+"use client"
 import { Image } from '@/components/atoms/image';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from '@/i18n/navigation';
+import { useRouter } from 'next/navigation';
 
 interface Props {
   title: string;
@@ -13,8 +15,10 @@ interface Props {
 }
 
 export const ArticleCard = ({ title, description, image, categories, btnText, btnLink }: Props) => {
+  const router = useRouter();
+
   return (
-    <Card className="h-full flex flex-col justify-between overflow-hidden pt-0! dark:bg-navy-blue/50">
+    <Card className="h-full flex flex-col justify-between overflow-hidden hover:-translate-y-1.5 transition-transform pt-0! dark:bg-navy-blue/50"  onClick={() => router.push(btnLink)}>
       <div className="relative aspect-video border-b">
         <Image src={image} alt={title} className="object-cover dark:brightness-75" />
       </div>
