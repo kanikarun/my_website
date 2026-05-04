@@ -29,7 +29,7 @@ export const InsightGrid: React.FC<Props> = ({ initialData, locale }) => {
       next={q.fetchNextPage}
       hasMore={!!q.hasNextPage}
     >
-      <div className="container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 py-1">
+      <div className="container grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 py-3">
         {results.map((x) => (
           <ArticleCard
             key={x.id}
